@@ -1,0 +1,232 @@
+[
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "chef",
+				"type": "address"
+			}
+		],
+		"name": "PoolLengthZero",
+		"type": "error"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "chef",
+				"type": "address"
+			}
+		],
+		"name": "UnknownChefType",
+		"type": "error"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_origin",
+				"type": "address"
+			}
+		],
+		"name": "createFactoryNonce",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "chef",
+				"type": "address"
+			},
+			{
+				"internalType": "uint8",
+				"name": "chefType",
+				"type": "uint8"
+			}
+		],
+		"name": "getLength",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "len",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "chef",
+				"type": "address"
+			}
+		],
+		"name": "getMCPoolData",
+		"outputs": [
+			{
+				"internalType": "uint8",
+				"name": "chefType",
+				"type": "uint8"
+			},
+			{
+				"internalType": "address[]",
+				"name": "lpTokens",
+				"type": "address[]"
+			},
+			{
+				"internalType": "uint256[]",
+				"name": "allocPoint",
+				"type": "uint256[]"
+			},
+			{
+				"internalType": "uint256[]",
+				"name": "endTime",
+				"type": "uint256[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "chef",
+				"type": "address"
+			}
+		],
+		"name": "identifyChefType",
+		"outputs": [
+			{
+				"internalType": "uint8",
+				"name": "chefType",
+				"type": "uint8"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "token",
+				"type": "address"
+			}
+		],
+		"name": "lpTokenInfo",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "bool",
+						"name": "isLPToken",
+						"type": "bool"
+					},
+					{
+						"internalType": "address",
+						"name": "token0",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "token1",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "factory",
+						"type": "address"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "symbol",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "token0symbol",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "token1symbol",
+						"type": "bytes32"
+					}
+				],
+				"internalType": "struct AmysStakingCo.LPTokenInfo",
+				"name": "info",
+				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address[]",
+				"name": "tokens",
+				"type": "address[]"
+			}
+		],
+		"name": "lpTokenInfo",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "bool",
+						"name": "isLPToken",
+						"type": "bool"
+					},
+					{
+						"internalType": "address",
+						"name": "token0",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "token1",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "factory",
+						"type": "address"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "symbol",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "token0symbol",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "token1symbol",
+						"type": "bytes32"
+					}
+				],
+				"internalType": "struct AmysStakingCo.LPTokenInfo[]",
+				"name": "info",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+]

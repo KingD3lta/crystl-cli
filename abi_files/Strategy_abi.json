@@ -1,0 +1,675 @@
+[
+	{
+		"inputs": [
+			{
+				"internalType": "contract IVaultHealer",
+				"name": "_vaultHealer",
+				"type": "address"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "ptr",
+				"type": "uint256"
+			}
+		],
+		"name": "Strategy_CriticalMemoryError",
+		"type": "error"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "wantAdded",
+				"type": "uint256"
+			}
+		],
+		"name": "Strategy_DustDeposit",
+		"type": "error"
+	},
+	{
+		"inputs": [],
+		"name": "Strategy_ExcessiveFarmSlippage",
+		"type": "error"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "operator",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "from",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256[]",
+				"name": "ids",
+				"type": "uint256[]"
+			}
+		],
+		"name": "Strategy_Improper1155BatchDeposit",
+		"type": "error"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "operator",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "from",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			}
+		],
+		"name": "Strategy_Improper1155Deposit",
+		"type": "error"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "sender",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "Strategy_ImproperEthDeposit",
+		"type": "error"
+	},
+	{
+		"inputs": [],
+		"name": "Strategy_InitializeOnlyByProxy",
+		"type": "error"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "sender",
+				"type": "address"
+			}
+		],
+		"name": "Strategy_NotVaultHealer",
+		"type": "error"
+	},
+	{
+		"inputs": [],
+		"name": "Strategy_TotalSlippageWithdrawal",
+		"type": "error"
+	},
+	{
+		"inputs": [],
+		"name": "configAddress",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "configAddr",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "configInfo",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "vid",
+				"type": "uint256"
+			},
+			{
+				"internalType": "contract IERC20",
+				"name": "want",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "wantDust",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "masterchef",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "pid",
+				"type": "uint256"
+			},
+			{
+				"internalType": "contract IUniRouter",
+				"name": "_router",
+				"type": "address"
+			},
+			{
+				"internalType": "contract IMagnetite",
+				"name": "_magnetite",
+				"type": "address"
+			},
+			{
+				"internalType": "contract IERC20[]",
+				"name": "earned",
+				"type": "address[]"
+			},
+			{
+				"internalType": "uint256[]",
+				"name": "earnedDust",
+				"type": "uint256[]"
+			},
+			{
+				"internalType": "uint256",
+				"name": "slippageFactor",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bool",
+				"name": "feeOnTransfer",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_wantAmt",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_sharesTotal",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bytes",
+				"name": "",
+				"type": "bytes"
+			}
+		],
+		"name": "deposit",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "wantAdded",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "sharesAdded",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "Fee.Data[3]",
+				"name": "fees",
+				"type": "uint256[3]"
+			},
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			},
+			{
+				"internalType": "bytes",
+				"name": "",
+				"type": "bytes"
+			}
+		],
+		"name": "earn",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "success",
+				"type": "bool"
+			},
+			{
+				"internalType": "uint256",
+				"name": "__wantLockedTotal",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "Tactics.TacticsA",
+				"name": "_tacticsA",
+				"type": "uint256"
+			},
+			{
+				"internalType": "Tactics.TacticsB",
+				"name": "_tacticsB",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "_wantToken",
+				"type": "address"
+			},
+			{
+				"internalType": "uint8",
+				"name": "_wantDust",
+				"type": "uint8"
+			},
+			{
+				"internalType": "address",
+				"name": "_router",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "_magnetite",
+				"type": "address"
+			},
+			{
+				"internalType": "uint8",
+				"name": "_slippageFactor",
+				"type": "uint8"
+			},
+			{
+				"internalType": "bool",
+				"name": "_feeOnTransfer",
+				"type": "bool"
+			},
+			{
+				"internalType": "address[]",
+				"name": "_earned",
+				"type": "address[]"
+			},
+			{
+				"internalType": "uint8[]",
+				"name": "_earnedDust",
+				"type": "uint8[]"
+			}
+		],
+		"name": "generateConfig",
+		"outputs": [
+			{
+				"internalType": "bytes",
+				"name": "configData",
+				"type": "bytes"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_masterchef",
+				"type": "address"
+			},
+			{
+				"internalType": "uint24",
+				"name": "pid",
+				"type": "uint24"
+			},
+			{
+				"internalType": "uint8",
+				"name": "vstReturnPosition",
+				"type": "uint8"
+			},
+			{
+				"internalType": "uint64",
+				"name": "vstCode",
+				"type": "uint64"
+			},
+			{
+				"internalType": "uint64",
+				"name": "depositCode",
+				"type": "uint64"
+			},
+			{
+				"internalType": "uint64",
+				"name": "withdrawCode",
+				"type": "uint64"
+			},
+			{
+				"internalType": "uint64",
+				"name": "harvestCode",
+				"type": "uint64"
+			},
+			{
+				"internalType": "uint64",
+				"name": "emergencyCode",
+				"type": "uint64"
+			}
+		],
+		"name": "generateTactics",
+		"outputs": [
+			{
+				"internalType": "Tactics.TacticsA",
+				"name": "tacticsA",
+				"type": "uint256"
+			},
+			{
+				"internalType": "Tactics.TacticsB",
+				"name": "tacticsB",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "pure",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getMaximizerImplementation",
+		"outputs": [
+			{
+				"internalType": "contract IStrategy",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "implementation",
+		"outputs": [
+			{
+				"internalType": "contract IStrategy",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "bytes",
+				"name": "_config",
+				"type": "bytes"
+			}
+		],
+		"name": "initialize",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "isMaximizer",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "operator",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "from",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256[]",
+				"name": "ids",
+				"type": "uint256[]"
+			},
+			{
+				"internalType": "uint256[]",
+				"name": "",
+				"type": "uint256[]"
+			},
+			{
+				"internalType": "bytes",
+				"name": "",
+				"type": "bytes"
+			}
+		],
+		"name": "onERC1155BatchReceived",
+		"outputs": [
+			{
+				"internalType": "bytes4",
+				"name": "",
+				"type": "bytes4"
+			}
+		],
+		"stateMutability": "pure",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "operator",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "from",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bytes",
+				"name": "",
+				"type": "bytes"
+			}
+		],
+		"name": "onERC1155Received",
+		"outputs": [
+			{
+				"internalType": "bytes4",
+				"name": "",
+				"type": "bytes4"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "panic",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "router",
+		"outputs": [
+			{
+				"internalType": "contract IUniRouter",
+				"name": "_router",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "bytes4",
+				"name": "interfaceId",
+				"type": "bytes4"
+			}
+		],
+		"name": "supportsInterface",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "tactics",
+		"outputs": [
+			{
+				"internalType": "Tactics.TacticsA",
+				"name": "tacticsA",
+				"type": "uint256"
+			},
+			{
+				"internalType": "Tactics.TacticsB",
+				"name": "tacticsB",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "unpanic",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "vaultHealer",
+		"outputs": [
+			{
+				"internalType": "contract IVaultHealer",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "vaultSharesTotal",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "wantLockedTotal",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "wantToken",
+		"outputs": [
+			{
+				"internalType": "contract IERC20",
+				"name": "_token",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_wantAmt",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_userShares",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_sharesTotal",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bytes",
+				"name": "",
+				"type": "bytes"
+			}
+		],
+		"name": "withdraw",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "sharesRemoved",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "wantAmt",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"stateMutability": "payable",
+		"type": "receive"
+	}
+]
