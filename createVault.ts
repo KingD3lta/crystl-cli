@@ -125,7 +125,7 @@ async function calcEDust(earned) {
     let val = await PriceGetterInstance.methods
       .getLPPrice(earned[i], 18)
       .call();
-    let equalsOneCent = (1e16 / val[i]) * 1e18;
+    let equalsOneCent = (1e16 / val) * 1e18;
     earnedDustArray.push(Math.floor(Math.log2(equalsOneCent)));
   }
 }
