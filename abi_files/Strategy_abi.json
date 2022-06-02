@@ -13,6 +13,49 @@
 	{
 		"inputs": [
 			{
+				"internalType": "contract IERC20",
+				"name": "a",
+				"type": "address"
+			},
+			{
+				"internalType": "contract IERC20",
+				"name": "b",
+				"type": "address"
+			}
+		],
+		"name": "IdenticalAddresses",
+		"type": "error"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "amountOut",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amountOutMin",
+				"type": "uint256"
+			}
+		],
+		"name": "InsufficientOutputAmount",
+		"type": "error"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "caller",
+				"type": "address"
+			}
+		],
+		"name": "Muppet",
+		"type": "error"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "uint256",
 				"name": "ptr",
 				"type": "uint256"
@@ -118,6 +161,27 @@
 	},
 	{
 		"inputs": [],
+		"name": "Strategy_WantLockedLoss",
+		"type": "error"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "vid",
+				"type": "uint256"
+			}
+		],
+		"name": "VidOutOfRange",
+		"type": "error"
+	},
+	{
+		"inputs": [],
+		"name": "ZeroAddress",
+		"type": "error"
+	},
+	{
+		"inputs": [],
 		"name": "configAddress",
 		"outputs": [
 			{
@@ -134,59 +198,66 @@
 		"name": "configInfo",
 		"outputs": [
 			{
-				"internalType": "uint256",
-				"name": "vid",
-				"type": "uint256"
-			},
-			{
-				"internalType": "contract IERC20",
-				"name": "want",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "wantDust",
-				"type": "uint256"
-			},
-			{
-				"internalType": "address",
-				"name": "masterchef",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "pid",
-				"type": "uint256"
-			},
-			{
-				"internalType": "contract IUniRouter",
-				"name": "_router",
-				"type": "address"
-			},
-			{
-				"internalType": "contract IMagnetite",
-				"name": "_magnetite",
-				"type": "address"
-			},
-			{
-				"internalType": "contract IERC20[]",
-				"name": "earned",
-				"type": "address[]"
-			},
-			{
-				"internalType": "uint256[]",
-				"name": "earnedDust",
-				"type": "uint256[]"
-			},
-			{
-				"internalType": "uint256",
-				"name": "slippageFactor",
-				"type": "uint256"
-			},
-			{
-				"internalType": "bool",
-				"name": "feeOnTransfer",
-				"type": "bool"
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "vid",
+						"type": "uint256"
+					},
+					{
+						"internalType": "contract IERC20",
+						"name": "want",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "wantDust",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "masterchef",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "pid",
+						"type": "uint256"
+					},
+					{
+						"internalType": "contract IUniRouter",
+						"name": "_router",
+						"type": "address"
+					},
+					{
+						"internalType": "contract IMagnetite",
+						"name": "_magnetite",
+						"type": "address"
+					},
+					{
+						"internalType": "contract IERC20[]",
+						"name": "earned",
+						"type": "address[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "earnedDust",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "uint256",
+						"name": "slippageFactor",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "feeOnTransfer",
+						"type": "bool"
+					}
+				],
+				"internalType": "struct IStrategy.ConfigInfo",
+				"name": "info",
+				"type": "tuple"
 			}
 		],
 		"stateMutability": "view",
@@ -265,12 +336,12 @@
 			{
 				"internalType": "Tactics.TacticsA",
 				"name": "_tacticsA",
-				"type": "uint256"
+				"type": "bytes32"
 			},
 			{
 				"internalType": "Tactics.TacticsB",
 				"name": "_tacticsB",
-				"type": "uint256"
+				"type": "bytes32"
 			},
 			{
 				"internalType": "address",
@@ -342,29 +413,29 @@
 				"type": "uint8"
 			},
 			{
-				"internalType": "uint64",
+				"internalType": "bytes8",
 				"name": "vstCode",
-				"type": "uint64"
+				"type": "bytes8"
 			},
 			{
-				"internalType": "uint64",
+				"internalType": "bytes8",
 				"name": "depositCode",
-				"type": "uint64"
+				"type": "bytes8"
 			},
 			{
-				"internalType": "uint64",
+				"internalType": "bytes8",
 				"name": "withdrawCode",
-				"type": "uint64"
+				"type": "bytes8"
 			},
 			{
-				"internalType": "uint64",
+				"internalType": "bytes8",
 				"name": "harvestCode",
-				"type": "uint64"
+				"type": "bytes8"
 			},
 			{
-				"internalType": "uint64",
+				"internalType": "bytes8",
 				"name": "emergencyCode",
-				"type": "uint64"
+				"type": "bytes8"
 			}
 		],
 		"name": "generateTactics",
@@ -372,12 +443,12 @@
 			{
 				"internalType": "Tactics.TacticsA",
 				"name": "tacticsA",
-				"type": "uint256"
+				"type": "bytes32"
 			},
 			{
 				"internalType": "Tactics.TacticsB",
 				"name": "tacticsB",
-				"type": "uint256"
+				"type": "bytes32"
 			}
 		],
 		"stateMutability": "pure",
@@ -559,12 +630,12 @@
 			{
 				"internalType": "Tactics.TacticsA",
 				"name": "tacticsA",
-				"type": "uint256"
+				"type": "bytes32"
 			},
 			{
 				"internalType": "Tactics.TacticsB",
 				"name": "tacticsB",
-				"type": "uint256"
+				"type": "bytes32"
 			}
 		],
 		"stateMutability": "view",

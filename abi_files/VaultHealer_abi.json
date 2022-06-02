@@ -2,6 +2,27 @@
 	{
 		"inputs": [
 			{
+				"internalType": "address",
+				"name": "_vhAuth",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "_feeMan",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "_zap",
+				"type": "address"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "uint256",
 				"name": "lenA",
 				"type": "uint256"
@@ -60,6 +81,46 @@
 	},
 	{
 		"inputs": [],
+		"name": "ERC1155_ArrayLengthMismatch",
+		"type": "error"
+	},
+	{
+		"inputs": [],
+		"name": "ERC1155_BalanceQueryZeroAddress",
+		"type": "error"
+	},
+	{
+		"inputs": [],
+		"name": "ERC1155_InsufficientBalance",
+		"type": "error"
+	},
+	{
+		"inputs": [],
+		"name": "ERC1155_NotApproved",
+		"type": "error"
+	},
+	{
+		"inputs": [],
+		"name": "ERC1155_NotReceiver",
+		"type": "error"
+	},
+	{
+		"inputs": [],
+		"name": "ERC1155_ReceiverRejectedTokens",
+		"type": "error"
+	},
+	{
+		"inputs": [],
+		"name": "ERC1155_SetApprovalSelf",
+		"type": "error"
+	},
+	{
+		"inputs": [],
+		"name": "ERC1155_TransferZeroAddress",
+		"type": "error"
+	},
+	{
+		"inputs": [],
 		"name": "ERC1167_Create2Failed",
 		"type": "error"
 	},
@@ -77,6 +138,58 @@
 			}
 		],
 		"name": "ImplWrongHealer",
+		"type": "error"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "contract IERC20",
+				"name": "token",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "from",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "available",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "requested",
+				"type": "uint256"
+			}
+		],
+		"name": "InsufficientApproval",
+		"type": "error"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "contract IERC20",
+				"name": "token",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "from",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "balance",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "requested",
+				"type": "uint256"
+			}
+		],
+		"name": "InsufficientBalance",
 		"type": "error"
 	},
 	{
@@ -258,13 +371,7 @@
 			{
 				"indexed": true,
 				"internalType": "address",
-				"name": "from",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "to",
+				"name": "account",
 				"type": "address"
 			},
 			{
@@ -658,6 +765,177 @@
 	{
 		"inputs": [
 			{
+				"internalType": "address",
+				"name": "account",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "vid",
+				"type": "uint256"
+			}
+		],
+		"name": "boostInfo",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"internalType": "contract IBoostPool",
+						"name": "pool",
+						"type": "address"
+					},
+					{
+						"internalType": "contract IERC20",
+						"name": "rewardToken",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "pendingReward",
+						"type": "uint256"
+					}
+				],
+				"internalType": "struct IVaultHealer.BoostInfo[]",
+				"name": "active",
+				"type": "tuple[]"
+			},
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"internalType": "contract IBoostPool",
+						"name": "pool",
+						"type": "address"
+					},
+					{
+						"internalType": "contract IERC20",
+						"name": "rewardToken",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "pendingReward",
+						"type": "uint256"
+					}
+				],
+				"internalType": "struct IVaultHealer.BoostInfo[]",
+				"name": "finished",
+				"type": "tuple[]"
+			},
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"internalType": "contract IBoostPool",
+						"name": "pool",
+						"type": "address"
+					},
+					{
+						"internalType": "contract IERC20",
+						"name": "rewardToken",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "pendingReward",
+						"type": "uint256"
+					}
+				],
+				"internalType": "struct IVaultHealer.BoostInfo[]",
+				"name": "available",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_boostID",
+				"type": "uint256"
+			}
+		],
+		"name": "boostPool",
+		"outputs": [
+			{
+				"internalType": "contract IBoostPool",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "vid",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint16",
+				"name": "n",
+				"type": "uint16"
+			}
+		],
+		"name": "boostPoolVid",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "contract IBoostPool",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "vid",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "_implementation",
+				"type": "address"
+			},
+			{
+				"internalType": "bytes",
+				"name": "initdata",
+				"type": "bytes"
+			}
+		],
+		"name": "createBoost",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "uint256",
 				"name": "targetVid",
 				"type": "uint256"
@@ -729,34 +1007,6 @@
 	{
 		"inputs": [
 			{
-				"internalType": "uint256",
-				"name": "_vid",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_wantAmt",
-				"type": "uint256"
-			},
-			{
-				"internalType": "address",
-				"name": "_to",
-				"type": "address"
-			},
-			{
-				"internalType": "bytes",
-				"name": "_data",
-				"type": "bytes"
-			}
-		],
-		"name": "deposit",
-		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
 				"internalType": "uint256[]",
 				"name": "vids",
 				"type": "uint256[]"
@@ -776,24 +1026,44 @@
 	{
 		"inputs": [
 			{
-				"internalType": "uint256[]",
-				"name": "vids",
-				"type": "uint256[]"
+				"internalType": "uint256",
+				"name": "_boostID",
+				"type": "uint256"
+			}
+		],
+		"name": "emergencyBoostWithdraw",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_boostID",
+				"type": "uint256"
+			}
+		],
+		"name": "enableBoost",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_user",
+				"type": "address"
 			},
 			{
-				"internalType": "bytes[]",
-				"name": "data",
-				"type": "bytes[]"
+				"internalType": "uint256",
+				"name": "_boostID",
+				"type": "uint256"
 			}
 		],
-		"name": "earn",
-		"outputs": [
-			{
-				"internalType": "uint256[]",
-				"name": "successGas",
-				"type": "uint256[]"
-			}
-		],
+		"name": "enableBoost",
+		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
@@ -811,6 +1081,19 @@
 			}
 		],
 		"name": "executePendingDeposit",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_boostID",
+				"type": "uint256"
+			}
+		],
+		"name": "harvestBoost",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -892,6 +1175,30 @@
 		"inputs": [
 			{
 				"internalType": "address",
+				"name": "",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "maximizerEarningsOffset",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
 				"name": "_account",
 				"type": "address"
 			},
@@ -907,6 +1214,49 @@
 				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "bytes[]",
+				"name": "data",
+				"type": "bytes[]"
+			}
+		],
+		"name": "multicall",
+		"outputs": [
+			{
+				"internalType": "bytes[]",
+				"name": "results",
+				"type": "bytes[]"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "vid",
+				"type": "uint256"
+			}
+		],
+		"name": "nextBoostPool",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "contract IBoostPool",
+				"name": "",
+				"type": "address"
 			}
 		],
 		"stateMutability": "view",
@@ -960,6 +1310,38 @@
 			}
 		],
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256[]",
+				"name": "vids",
+				"type": "uint256[]"
+			}
+		],
+		"name": "paused",
+		"outputs": [
+			{
+				"internalType": "bytes",
+				"name": "pausedArray",
+				"type": "bytes"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "token",
+				"type": "address"
+			}
+		],
+		"name": "rescue",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -1072,6 +1454,43 @@
 	{
 		"inputs": [
 			{
+				"internalType": "string",
+				"name": "_uri",
+				"type": "string"
+			}
+		],
+		"name": "setURI",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "account",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "vid",
+				"type": "uint256"
+			}
+		],
+		"name": "stakedWantTokens",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "uint256",
 				"name": "_vid",
 				"type": "uint256"
@@ -1111,6 +1530,30 @@
 		"inputs": [
 			{
 				"internalType": "address",
+				"name": "account",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256[]",
+				"name": "vids",
+				"type": "uint256[]"
+			}
+		],
+		"name": "tokenData",
+		"outputs": [
+			{
+				"internalType": "uint256[4][]",
+				"name": "data",
+				"type": "uint256[4][]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
 				"name": "_account",
 				"type": "address"
 			},
@@ -1125,6 +1568,68 @@
 			{
 				"internalType": "uint256",
 				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address[]",
+				"name": "_account",
+				"type": "address[]"
+			},
+			{
+				"internalType": "uint256[]",
+				"name": "_vid",
+				"type": "uint256[]"
+			}
+		],
+		"name": "totalBalanceOfBatch",
+		"outputs": [
+			{
+				"internalType": "uint256[]",
+				"name": "amounts",
+				"type": "uint256[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "totalMaximizerEarnings",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "totalSupply",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
 				"type": "uint256"
 			}
 		],
@@ -1168,7 +1673,7 @@
 		"name": "vaultFeeManager",
 		"outputs": [
 			{
-				"internalType": "contract VaultFeeManager",
+				"internalType": "contract IVaultFeeManager",
 				"name": "",
 				"type": "address"
 			}
@@ -1237,6 +1742,25 @@
 		"inputs": [
 			{
 				"internalType": "uint256",
+				"name": "vid",
+				"type": "uint256"
+			}
+		],
+		"name": "wantLockedTotal",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
 				"name": "_vid",
 				"type": "uint256"
 			},
@@ -1270,11 +1794,6 @@
 			},
 			{
 				"internalType": "address",
-				"name": "_from",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
 				"name": "_to",
 				"type": "address"
 			},
@@ -1287,6 +1806,19 @@
 		"name": "withdraw",
 		"outputs": [],
 		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "zap",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
 		"type": "function"
 	}
 ]
