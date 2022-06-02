@@ -136,6 +136,24 @@ async function createMaxi(farm, targetVid) {
     console.log("TacticsA:", tacticsA);
     console.log("TacticsB:", tacticsB);
   }
+  if (farm.type == "ApeSingle") {
+    console.log("Attempting to Generate Tactics for ApeSingle");
+    var [tacticsA, tacticsB] = await StratInstance.methods
+      .generateTactics(
+        farm.chef,
+        farm.pid,
+        0, //position of return value in vaultSharesTotal returnData array
+        "0x93f1a40b23000000", //vaultSharesTotal - includes selector and encoded call format
+        "0x41441d3b40000000", //deposit - includes selector and encoded call format
+        "0x1058d28140000000", //withdraw - includes selector and encoded call format
+        "0x1058d281f0000000", //harvest - includes selector and encoded call format
+        "0x5312ea8e20000000" //emergency withdraw - includes selector and encoded call format
+      )
+      .call();
+    console.log("Tactics Generated!");
+    console.log("TacticsA:", tacticsA);
+    console.log("TacticsB:", tacticsB);
+  }
   if (farm.chefType == "0") {
     console.log("ERROR: FARM TYPE NOT RECOGNISED, CREATE CONFIG MANUALLY");
   }
