@@ -17,6 +17,7 @@ import { QIDAO } from "./VaultCreationConfigs/QIDAO";
 import { Gravity } from "./VaultCreationConfigs/Gravity";
 //FarmData - CRONOS
 import { CronaSwap } from "./VaultCreationConfigs/CronaSwap";
+import { VVSFinance } from "./VaultCreationConfigs/VVSFinance"
 //BSC
 import { PancakeSwap } from "./VaultCreationConfigs/PancakeSwap";
 import { BabySwap } from "./VaultCreationConfigs/BabySwap";
@@ -24,7 +25,7 @@ import { BiSwap } from "./VaultCreationConfigs/BiSwap";
 import { ApeSwapBSC } from "./VaultCreationConfigs/ApeSwapBSC";
 
 //const web3 = new Web3(new Web3.providers.HttpProvider(POLYGON_WEB3_PROVIDER));
-const web3 = new Web3(new Web3.providers.HttpProvider(BSC_RPC));
+const web3 = new Web3(new Web3.providers.HttpProvider(CRONOS_RPC));
 
 //Constants - POLYGON
 // const StratImplementationAddress = "0x57Ff558daA818B36af32A031ac92836aFd53426c"; //for reg strats
@@ -34,16 +35,16 @@ const web3 = new Web3(new Web3.providers.HttpProvider(BSC_RPC));
 // let VaultHealerAddress = "0xA1b26B5eC4a73A6a632bE1f45FfC628518c0AFD6";
 
 //Constants - CRONOS
-// const StratImplementationAddress = "0x646b1f750fdc4879fe52b64c2f0fdd8e62066ca7"; //for reg strats
-// const PriceGetterAddress = "0xb9B5792791DC8A76123A4545253D73F4624cc0B3";
-// const MagnetiteAddress = "0x5e740b6cb14b8df73a44e3b6c059e5b3310f6af9"; //note is proxy
-// const VaultHealerAddress = "0xba6f3b9bf74fbfa59d55e52fa722e6a5737070d0"; 
+const StratImplementationAddress = "0x04153E4493bD15ABd530670F23a8Dc53D6eE3068"; //for reg strats
+const PriceGetterAddress = "0xb9B5792791DC8A76123A4545253D73F4624cc0B3";
+const MagnetiteAddress = "0x5e740b6cb14b8df73a44e3b6c059e5b3310f6af9"; //note is proxy
+const VaultHealerAddress = "0xba6f3b9bf74fbfa59d55e52fa722e6a5737070d0"; 
 
 //Constants - BSC
-const StratImplementationAddress = "0x5c073Dbf40eC360506416278470171A32AFc7aDB";
-const PriceGetterAddress = "0x6993fFaB6FD7c483f33A5E3EFDFEA676425C8F31";
-const MagnetiteAddress = "0x95fb917327fb347C8d9B14d00D340249D8dA4B91";
-const VaultHealerAddress = "0x9Fe22630DE9Ec654256AB103adD153D93c4D329C"; // prod
+// const StratImplementationAddress = "0x20058692742dE4CdeF5043c80254dE526160b16D";
+// const PriceGetterAddress = "0x6993fFaB6FD7c483f33A5E3EFDFEA676425C8F31";
+// const MagnetiteAddress = "0xcde81e620245a22afeb694db93b681798ece0d4d";
+// const VaultHealerAddress = "0x662018D4fbD804631920d45610E0Ee928Ca75d7c"; // prod
 
 let PriceGetterInstance = new web3.eth.Contract(
   PriceGetterAbi,
@@ -221,4 +222,4 @@ async function signTxn(txData, gasEst, _to) {
   console.log("gas used:", sentTxn.gasUsed);
 }
 
-createMaxi(BabySwap.USDT_BUSD, 1);
+createMaxi(VVSFinance.ATOM_WCRO, 11);

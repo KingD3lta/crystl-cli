@@ -1,4 +1,15 @@
 export const CronaSwap = {
+  CRONA: {
+    chef: "0x77ea4a4cF9F77A034E4291E8f457Af7772c2B254",
+    pid: 999,
+    want: "0xadbd1231fb360047525BEdF962581F3eee7b49fe",
+    wantName: "CRONA",
+    earned: ["0xadbd1231fb360047525BEdF962581F3eee7b49fe"],
+    eDecs: ["18"],
+    router: "0xcd7d16fB918511BF7269eC4f48d61D79Fb26f918",
+    name: "CronaSwap",
+    type: "ApeSingle",
+  },
   WCRO_CRONA: {
     chef: "0x7b1982b896cf2034a0674acf67dc7924444637e4",
     pid: 0,

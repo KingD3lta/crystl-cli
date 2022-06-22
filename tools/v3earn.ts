@@ -1,62 +1,48 @@
-import { inputData } from "../src/inputData";
+import { inputData, ABI } from "../src/config/inputData";
 const ethers = require("ethers");
+const chalk = require("chalk");
 require("dotenv").config();
 
-const StrategyAbi = require("../abi_files/Strategy_abi.json");
-const VaultHealerAbi = require("../abi_files/VaultHealer_abi.json");
-const RouterAbi = require("../abi_files/UniRouter_abi.json");
-const ERC20Abi = require("../abi_files/ERC20_abi.json");
 
 export const v3earn = async (network) => {
-  let web3EndPoint: string;
-  let vaultHealerAddr: string;
+  let data = inputData[network];
+  const  web3EndPoint: string = data.ENDPOINT
+  const vaultHealerAddr: string = data.V3Vaults.VaultHealer
 
-  if (network == "bsc") {
-    let data = inputData.BSC;
-    web3EndPoint = data.ENDPOINT;
-    vaultHealerAddr = data.V3Vaults.VaultHealer;
-  }
-  if (network == "cronos") {
-    let data = inputData.Cronos;
-    web3EndPoint = data.ENDPOINT;
-    vaultHealerAddr = data.V3Vaults.VaultHealer;
-  }
-  if (network == "polygon") {
-    let data = inputData.Cronos;
-    web3EndPoint = data.ENDPOINT;
-    vaultHealerAddr = data.V3Vaults.VaultHealer;
-  }
   const provider = new ethers.providers.JsonRpcProvider(web3EndPoint);
 
   const wallet = ethers.Wallet.fromMnemonic(process.env.MNEMONIC);
 
   const dev = wallet.connect(provider);
 
-  const VaultHealer = new ethers.Contract(vaultHealerAddr, VaultHealerAbi, dev);
+  const VaultHealer = new ethers.Contract(vaultHealerAddr, ABI.VaultHealer, dev);
   const minVid = 1;
   const numVaults = await VaultHealer.numVaultsBase();
 
   var vidArray = Array.from({ length: numVaults }, (_, i) => i + minVid);
+  console.log(chalk.blue("Vid Array:", chalk.green(vidArray)))
 
   for (let i = 0; i < vidArray.length; i++) {
+    console.log(chalk.blue("Current Vid:",chalk.green(vidArray[i])))
     var numMaximizers = (await VaultHealer.vaultInfo(vidArray[i]))
       .numMaximizers;
     console.log("Maximisers found:", numMaximizers);
     if(numMaximizers > 0){
     var maxiArray = Array.from(
       { length: numMaximizers },
-      (_, j) => j + (minVid << 16) + 1
+      (_, j) => j + (vidArray[i] << 16) + 1
     );
     console.log("Earning Vids:", maxiArray);
     vidArray.shift();
-    const maxiEarnTxn = await VaultHealer.earn(maxiArray);
-    console.log("Maximisers Earned:", await maxiEarnTxn.hash)
+    const maxiEarnTxn = await VaultHealer.earn(maxiArray, {gasLimit: 10000000});
+    console.log(chalk.yellow("Maximisers Earned:"), chalk.cyan(await maxiEarnTxn.hash))
   }
 }
   console.log("Earning Vids:", vidArray);
-  const convEarnTxn = await VaultHealer.earn(vidArray);
-  console.log("Maximisers Earned:", await convEarnTxn.hash)
+  const convEarnTxn = await VaultHealer.earn(vidArray,{gasLimit: 10000000});
+  console.log(chalk.yellow("Vaults Earned:"), chalk.cyan(await convEarnTxn.hash))
 };
+
 
 // export const vidsPrimed = async (network: string) => {
 //   let web3EndPoint: string;
@@ -172,4 +158,4 @@ export const v3earn = async (network) => {
 //   ];
 //   console.log(vidsToEarn);
 // };
-v3earn("bsc");
+//v3earn("CRONOS");

@@ -1,82 +1,94 @@
-import { inputData } from "./inputData";
+import { ABI, inputData } from "./config/inputData";
+const chalk = require("chalk");
+
 const ethers = require("ethers");
 require("dotenv").config();
 
-const VaultHealerAbi = require("../abi_files/VaultHealer_abi.json");
-const boostPoolAbi = require("../abi_files/BoostPool_abi.json");
+const BigNumberify = ethers.BigNumber.from;
 
-export const createBoostPool = async (
+export const createInitData = async (
   network: string,
   reward: string,
   vid: number,
-  duration: number, //in days 
-  hoursToStart: number,
-  totalRewards: number,
-  decimals: number
+  duration, //in days
+  hoursToStart,
+  totalRewards,
+  decimals
 ) => {
   const mnemonic = process.env.MNEMONIC;
 
-  let web3EndPoint;
-  let vaultHealerAddr;
-  let boostPoolAddr;
-  let blocksPerDay;
+  duration = BigNumberify(duration);
+  hoursToStart = BigNumberify(hoursToStart);
+  totalRewards = BigNumberify(totalRewards);
 
-  if (network == "bsc") {
-    let data = inputData.BSC;
-    web3EndPoint = data.ENDPOINT;
-    vaultHealerAddr = data.V3Vaults.VaultHealer;
-    boostPoolAddr = data.V3Vaults.boostPoolImpl;
-    blocksPerDay = 28800;
+  const data = inputData[network];
+  const web3EndPoint = data.ENDPOINT;
+  const boostPoolAddr = data.V3Vaults.BoostPool;
+
+  if (network == "BSC") {
+    var blocksPerDay = BigNumberify(28800);
   }
-  if (network == "cronos") {
-    let data = inputData.Cronos;
-    web3EndPoint = data.ENDPOINT;
-    vaultHealerAddr = data.V3Vaults.VaultHealer;
-    boostPoolAddr = data.V3Vaults.boostPoolImpl;
-    blocksPerDay = 17280;
+  if (network == "CRONOS") {
+    var blocksPerDay = BigNumberify(17280);
   }
-  if (network == "polygon") {
-    let data = inputData.Polygon;
-    web3EndPoint = data.ENDPOINT;
-    vaultHealerAddr = data.V3Vaults.VaultHealer;
-    boostPoolAddr = data.V3Vaults.boostPoolImpl;
-    blocksPerDay = 43200;
+  if (network == "POLYGON") {
+    var blocksPerDay = BigNumberify(43200);
   }
 
   const provider = new ethers.providers.JsonRpcProvider(web3EndPoint);
   const wallet = ethers.Wallet.fromMnemonic(mnemonic);
-
   const dev = wallet.connect(provider);
 
-  const VaultHealer = new ethers.Contract(vaultHealerAddr, VaultHealerAbi, dev);
-  const BoostPool = new ethers.Contract(
-    boostPoolAddr,
-    boostPoolAbi,
-    web3EndPoint
-  );
+  const BoostPool = new ethers.Contract(boostPoolAddr, ABI.BoostPool, dev);
 
-  
+  const delayBlocks = hoursToStart.mul(blocksPerDay.div(60));
 
-  const delayBlocks = Math.floor(hoursToStart * (blocksPerDay / 60));
-  console.log("delayBlocks:", delayBlocks);
+  const durationBlocks = duration.mul(blocksPerDay);
 
-  const durationBlocks = Math.floor(duration * blocksPerDay);
-  console.log("durationBlocks:", durationBlocks);
+  const rawTotalRewards = totalRewards.mul(BigNumberify(10).pow(decimals));
 
-  const rawTotalRewards = Math.floor(totalRewards * Math.pow(10, decimals));
-  console.log("rawTotalRewards:", rawTotalRewards);
-
-  const rewardPerBlock = Math.floor(rawTotalRewards / durationBlocks);
-  console.log("rewardPerBlock:", rewardPerBlock);
+  const rewardPerBlock = rawTotalRewards.div(durationBlocks);
 
   const initData: string = await BoostPool.generateInitData(
-    reward,
+    data.tokens[reward],
     rewardPerBlock,
     delayBlocks,
     durationBlocks
   );
-  console.log("initData:", initData);
+  const VaultHealer = new ethers.Contract(
+    inputData[network].V3Vaults.VaultHealer,
+    ABI.VaultHealer,
+    dev
+  );
 
+  const nextBoostPool = await VaultHealer.nextBoostPool(vid);
+  // console.log("initData:", initData);
+  console.log(chalk.yellow.bold("New Boost Pool Address:"),(nextBoostPool[1]));
+  console.log(chalk.cyanBright.bold("*** PLEASE FUND THIS ADDRESS WITH THE REWARDS BEFORE CONTINUING ***"))
+  // console.log("VID", vid.toString(16));
+  // console.log("Next Boost Pool:", nextBoostProxyAddr);
+  return initData;
+};
+
+export const createBoost = async (
+  network: string,
+  vid: number,
+  initData: string
+) => {
+  const mnemonic = process.env.MNEMONIC;
+
+  const provider = new ethers.providers.JsonRpcProvider(inputData[network].web3EndPoint);
+  const wallet = ethers.Wallet.fromMnemonic(mnemonic);
+  const dev = wallet.connect(provider);
+  console.log(inputData[network].V3Vaults.VaultHealer,
+  ABI.VaultHealer,
+  dev)
+  const VaultHealer = new ethers.Contract(
+    inputData[network].V3Vaults.VaultHealer,
+    ABI.VaultHealer,
+    dev
+  );
+  const boostPoolAddr = inputData[network].V3Vaults.BoostPool
   const BOOST = await VaultHealer.createBoost(vid, boostPoolAddr, initData);
   const BOOSTCreationTxn = await BOOST.wait();
 
@@ -85,4 +97,13 @@ export const createBoostPool = async (
     BOOSTCreationTxn.events[0].address
   );
 };
-createBoostPool("bsc", "0x", 0x0, 0x0, 0x0, 0x0, 0x0);
+
+// createInitData(
+//   "CRONOS", //network
+//   "0xadbd1231fb360047525BEdF962581F3eee7b49fe", //address of token to boost with
+//   327683, //vid to boost
+//   7, //duration of boostPool
+//   3, //hours before start
+//   120000, //total rewards emitted ( in regular format is fine as the script will make it thicc)
+//   18 //decimals of the earned token ( please donut shag this up <3 )
+// );

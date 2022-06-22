@@ -1,4 +1,4 @@
-import { inputData } from "../src/inputData";
+import { inputData } from "../src/config/inputData";
 const ethers = require("ethers");
 require("dotenv").config();
 
@@ -13,12 +13,12 @@ export const convertDustV2 = async (network: string) => {
     return;
   }
   if (network == "cronos") {
-    let data = inputData.Cronos;
+    let data = inputData.CRONOS;
     web3EndPoint = data.ENDPOINT;
     v2Vaulthealer = data.V3Vaults.V2VaultHealer;
   }
   if (network == "polygon") {
-    let data = inputData.Polygon;
+    let data = inputData.POLYGON;
     web3EndPoint = data.ENDPOINT;
     v2Vaulthealer = data.V3Vaults.V2VaultHealer;
   }
