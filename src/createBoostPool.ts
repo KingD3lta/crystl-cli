@@ -1,4 +1,5 @@
 import { ABI, inputData } from "./config/inputData";
+import { initDev } from "./InitialiseWeb3";
 const chalk = require("chalk");
 
 const ethers = require("ethers");
@@ -24,6 +25,7 @@ export const createInitData = async (
   const data = inputData[network];
   const web3EndPoint = data.ENDPOINT;
   const boostPoolAddr = data.V3Vaults.BoostPool;
+  console.log(data, web3EndPoint, boostPoolAddr)
 
   if (network == "BSC") {
     var blocksPerDay = BigNumberify(28800);
@@ -77,9 +79,7 @@ export const createBoost = async (
 ) => {
   const mnemonic = process.env.MNEMONIC;
 
-  const provider = new ethers.providers.JsonRpcProvider(inputData[network].web3EndPoint);
-  const wallet = ethers.Wallet.fromMnemonic(mnemonic);
-  const dev = wallet.connect(provider);
+  const dev = await initDev(network)
   console.log(inputData[network].V3Vaults.VaultHealer,
   ABI.VaultHealer,
   dev)

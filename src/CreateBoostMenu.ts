@@ -1,6 +1,7 @@
 import { inputData } from "./config/inputData";
 import { ChainSpecificData } from "./config/types";
 import { createInitData, createBoost } from "./createBoostPool";
+import { initDev } from "./InitialiseWeb3";
 import { WelcomeMenu } from "./Welcome";
 
 const chalk = require("chalk");
@@ -72,6 +73,7 @@ export const CreateBoostMenu = async (CSD:ChainSpecificData) => {
     BoostReq.TotalRewards,
     BoostReq.Decimals
   );
+  console.log(CSD.network, initDev, BoostReq.vid, CSD)
   ConfirmBoost(CSD.network, InitData, BoostReq.VID, CSD);
 };
 
