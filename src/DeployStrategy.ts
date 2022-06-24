@@ -1,21 +1,22 @@
-import { BoilerPlatePromptWithInput } from "../tools/Menus/BoilerPlateMenus";
-import { inputData } from "./config/inputData";
-import { INFO_MSG, STATUS_MSG } from "./getDeploymentData";
+import { BoilerPlatePromptWithInput } from "./menus/BoilerPlateMenus";
+import { inputData, ABI } from "./config/inputData";
+import { INFO_MSG, STATUS_MSG } from "./GetVaultConfig";
 const ethers = require("ethers");
 
 const VaultHealerInitCodeHash = "0x577cbdbf32026552c0ae211272febcff3ea352b0c755f8f39b49856dcac71019";
 
 export const DeployStrategy = async (
   EncodedVaultConfig,
-  VaultHealer,
   network,
-  StrategyType
+  StrategyImplementationAddress,
+  V3,
+  dev
 ) => {
   let [isMaximiser, TargetVid] = await BoilerPlatePromptWithInput(
     "Is This a Maximiser?",
     "What is the Target Vid this Maximiser should point to"
   );
-  console.log("IsMaximiser?", isMaximiser);
+  const VaultHealer = new ethers.Contract(V3.VaultHealer, ABI.VaultHealer, dev)
   if (isMaximiser) {
     const DeployMaximiser = await VaultHealer.createMaximizer(
       ethers.BigNumber.from(TargetVid),
@@ -37,12 +38,8 @@ export const DeployStrategy = async (
     );
     console.log(proxyAddress);
   } else {
-    console.log(
-      inputData[network].V3Vaults.Strategies[StrategyType],
-      {gasPrice: await VaultHealer.provider.getGasPrice()}
-    );
     const DeployVault = await VaultHealer.createVault(
-      inputData[network].V3Vaults.Strategies[StrategyType],
+      StrategyImplementationAddress,
       EncodedVaultConfig,
       { gasPrice: await VaultHealer.provider.getGasPrice() }
     );

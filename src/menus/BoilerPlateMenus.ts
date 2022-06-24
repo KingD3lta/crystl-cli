@@ -61,7 +61,7 @@ export const PickAToken = async (msg = "", network) => {
     },
   ];
   const SelectedToken = await inquirer.prompt(options).then((answers) => {
-    return answers.PickAToken;
+    return inputData[network].tokens[answers.PickAToken];
   });
   return SelectedToken;
 };
@@ -76,7 +76,7 @@ export const PickARouter = async (msg = "", network) => {
     },
   ];
   const SelectedRouter = await inquirer.prompt(options).then((answers) => {
-    return answers.PickARouter;
+    return inputData[network].routers[answers.PickARouter];
   });
   return SelectedRouter;
 };
@@ -90,7 +90,22 @@ export const PickATacticSetup = async () => {
     },
   ];
   const TacticSetupSelected = await inquirer.prompt(options).then((answers) => {
-    return answers.PickATactic;
+    return tacticsSetup[answers.PickATactic];
   });
   return TacticSetupSelected;
+};
+
+export const PickAStrategy = async (msg = "", network) => {
+  const options = [
+    {
+      type: "list",
+      name: "PickAStrategy",
+      choices: Object.keys(inputData[network].V3Vaults.Strategies),
+      message: msg,
+    },
+  ];
+  const SelectedStrategy = await inquirer.prompt(options).then((answers) => {
+    return [inputData[network].V3Vaults.Strategies[answers.PickAStrategy, answers.PickAStrategy]];
+  });
+  return SelectedStrategy;
 };

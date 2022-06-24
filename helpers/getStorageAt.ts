@@ -1,12 +1,13 @@
 import { inputData } from "../src/config/inputData";
-import { PromptNetwork } from "../src/promptNetwork";
+import { ChainSpecificData } from "../src/config/types";
+import { PromptNetwork } from "../src/menus/PromptNetwork";
 
 const ethers = require("ethers");
 var inquirer = require("inquirer");
 
 
 export const getStorageAt = async () => {
-    const network = await PromptNetwork()
+    const [, dev]  = await PromptNetwork()
     const options = [
         { 
             type: "input",
@@ -22,11 +23,9 @@ export const getStorageAt = async () => {
     const [address, slot] = await inquirer.prompt(options).then((answers) => {
         return [answers.address, answers.slot]
     })
-    const web3EndPoint = inputData[network.network].ENDPOINT
 
-    const provider = new ethers.providers.JsonRpcProvider(web3EndPoint);
 
-    const dataAtSlot = await provider.getStorageAt(address, slot)
+    const dataAtSlot = await dev.getStorageAt(address, slot)
 
     console.log(dataAtSlot)
 

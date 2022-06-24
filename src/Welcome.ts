@@ -40,14 +40,13 @@ export const WelcomeMenu = async () => {
     return answers.Task;
   });
   if (Task == "Create Something") {
-    console.log("What's cooking, Dev? ;)");
     await CreateMenu();
   }
   if (Task == "Manage Stuff") {
-    console.log("Assistant", chalk.red.bold("TO"), "the regional manager!");
     await ManagementMenu();
   }
   if (Task == "Fun Tools") {
+    //await ToolMenu
     await getStorageAt()
   }
 };

@@ -27,6 +27,7 @@ export type EncodedArgs = {
 }
 
 export type ChainSpecificData = {
+    V3: object,
     network:string,
     tokens: object,
     routers: object,

@@ -1,24 +1,25 @@
 const chalk = require("chalk");
-import { create } from "../helpers/create";
+import { TacticsChad } from "../helpers/tacticsChad";
 import { tCode } from "../helpers/tacticsChad";
 import { tacticsSetup } from "./config/inputData";
-import { WARN_MSG, STATUS_MSG, CAUTION_MSG, INFO_MSG } from "./getDeploymentData";
-import { ChainSpecificData, EncodedArgs, EncodedSelectors } from "./config/types";
+import { WARN_MSG, STATUS_MSG, CAUTION_MSG, INFO_MSG } from "./GetVaultConfig";
+import {  EncodedArgs, EncodedSelectors } from "./config/types";
 var inquirer = require("inquirer");
 
 export const TacticsChadMenu = async () => {
   STATUS_MSG(
-    "WELCOME TO TACTICS CHAD, LETS ENCRYPT SOME FUNCTION SELECTORS, KING"
+    "WELCOME TO TACTICS CHAD, LETS ENCRYPT SOME FUNCTION SELECTORS, FRIEND  (* w * ) "
   );
   WARN_MSG(
-    "This software encrypts your inputs, it is important that you insert the function selectors according to the following Format:"
+    "This software hashes your inputs AS TYPED"
   );
-  CAUTION_MSG("* deposit(uint256,uint256) *");
-  CAUTION_MSG("* A few things to remember... *");
+  WARN_MSG("it is important that you insert the function selectors:")
+  CAUTION_MSG("* ACCURATELY *");
+  CAUTION_MSG("* WITHOUT QUOTES *");
   CAUTION_MSG(
-    " IF IT SAYS UINT256, PUT IN UINT256, DO NOT PUT IN UINT EVEN THOUGH IT IS AN ALIAS"
+    " * UINT256 != UINT *"
   );
-  CAUTION_MSG(" NO SPACES BETWEEN ARGUMENTS");
+  CAUTION_MSG(" * NO SPACES BETWEEN ARGUMENTS *");
 
   const TacticsChadOptions = [
     {
@@ -79,6 +80,7 @@ export const TacticsChadMenu = async () => {
   wd : await ArgSelectorMenu(Selectors.withdraw),
   harv : await ArgSelectorMenu(Selectors.harvest),
   sos : await ArgSelectorMenu(Selectors.sos),
+  
 };
 
 const vstReturn = Selectors.vstReturn
@@ -90,7 +92,7 @@ const SelectorWithArgs: EncodedSelectors  = {
     harvest: [Selectors.harvest, encodedArgs.harv],
     sos: [Selectors.sos, encodedArgs.sos],
 }
-return [SelectorWithArgs, vstReturn]
+return TacticsChad(Selectors, vstReturn)
 }
 
 export const ArgSelectorMenu = async (Selector) => {

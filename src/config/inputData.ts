@@ -4,12 +4,13 @@ import { ValidTactics } from "./types";
 export const ABI = {
   //V3 Vault ABIs
   VaultHealer: require("./abi_files/VaultHealer_abi.json"),
-  Strategy: require("./abi_files/Strategy_abi.json"),
+  Strategies: { Strategy: require("./abi_files/Strategy_abi.json")},
   BoostPool: require("./abi_files/BoostPool_abi.json"),
   //VaultGetter: require("./abi_files/VaultGetterV3_abi.json"),
   //Periphery Helpers
   PriceGetter: require("./abi_files/PriceGetter_abi.json"),
   AmysStakingCo: require("./abi_files/AmysStakingCoV2_abi.json"),
+  IsContract: require("./abi_files/IsContract_abi.json"),
   //External Contracts
   ERC20: require("./abi_files/ERC20_abi.json"),
   UniV2Factory: require("./abi_files/UniV2Factory_abi.json"),
@@ -103,6 +104,7 @@ export const inputData = {
       AmysStakingCo: "",
       PriceGetter: "0x8b2d2279F722BbB38A32b5ddd050378ffdF28Ee4",
       V2VaultHealer: "0xD4d696ad5A7779F4D3A0Fc1361adf46eC51C632d",
+      IsContract: "0x5d1259992741657B7E170F595049Ed9747a4Dd7E"
     },
     routers: {
       SushiSwap: "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506",
