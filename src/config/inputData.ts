@@ -82,6 +82,14 @@ export const tacticsSetup = {
     harvest: "0xb6b55f25f0000000",
     SOS: "0x5312ea8e00000000",
   },
+  SaharaStaking: {
+    vstReturn: "0",
+    vst: "0x93f1a40b23000000",
+    deposit: "0x8dbdbe6d24300000",
+    withdraw: "0x0ad58d2f24300000",
+    harvest: "0x18fccc7623000000",
+    SOS: "0x2f940c7023000000",
+  },
   customSetup: {
     vstReturn: "",
     vst: "",
@@ -103,6 +111,7 @@ export const inputData = {
       AmysStakingCo: "",
       PriceGetter: "0x8b2d2279F722BbB38A32b5ddd050378ffdF28Ee4",
       V2VaultHealer: "0xD4d696ad5A7779F4D3A0Fc1361adf46eC51C632d",
+      IsContract: "0x5d1259992741657B7E170F595049Ed9747a4Dd7E"
     },
     routers: {
       SushiSwap: "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506",
@@ -149,7 +158,8 @@ export const inputData = {
       PDSHARE: "0x3068382885602fc0089aec774944b5ad6123ae60",
       QI: "0x580A84C73811E1839F75d86d75d88cCa0c241fF4",
       SUSHI: "0x0b3F868E0BE5597D5DB7fEB59E1CADBb0fdDa50a",
-      PolyDoge: "0x8A953CfE442c5E8855cc6c61b1293FA648BAE472"
+      PolyDoge: "0x8A953CfE442c5E8855cc6c61b1293FA648BAE472",
+      ABR: "0x04429fbb948BBD09327763214b45e505A5293346"
     },
     farms: {
       BarberShop: "0xC6Ae34172bB4fC40c49C3f53badEbcE3Bb8E6430",
@@ -174,12 +184,13 @@ export const inputData = {
     ENDPOINT: process.env.CRONOS_RPC,
     V3Vaults: {
       VaultHealer: "0xba6f3b9bf74fbfa59d55e52fa722e6a5737070d0",
-      Strategies: {Strategy: "0x04153E4493bD15ABd530670F23a8Dc53D6eE3068"},
+      Strategies: {Strategy: "0x04153E4493bD15ABd530670F23a8Dc53D6eE3068", StrategySahara: "0x61208B932a98D3Ac4ed617F1f5203412bD310736"},
       BoostPool: "0x154fbf66d949a7000db0736c46c7a459c6f7b9cf",
       MagnetiteProxy: "0x5e740b6cb14b8df73a44e3b6c059e5b3310f6af9",
       AmysStakingCo: "0x35c7a156Cb47d1B117382CE6191795373eF6c085", //needs to be updated
       PriceGetter: "0xb9B5792791DC8A76123A4545253D73F4624cc0B3",
       V2VaultHealer: "0x4dF0dDc29cE92106eb8C8c17e21083D4e3862533",
+      IsContract: ""
     },
     routers: {
       CRONASWAP: "0xcd7d16fB918511BF7269eC4f48d61D79Fb26f918",
@@ -202,12 +213,18 @@ export const inputData = {
       ARGO: "0x47A9D630dc5b28F75d3AF3be3AAa982512Cd89Aa",
       bCRO: "0xeBAceB7F193955b946cC5dd8f8724a80671a1F2F",
       xARGO: "0xb966B5D6A0fCd5b373B180Bbe072BBFbbEe10552",
-      FER: "0x39bC1e38c842C60775Ce37566D03B41A7A66C782"
+      FER: "0x39bC1e38c842C60775Ce37566D03B41A7A66C782",
+      ['10MB']: "0x02A8Dc66334B1cc6CD8F28Fe8DBF6b58B49b47B6",
+      ['10SHARE'] : "0xD8d40DcEE0C2B486EEBd1FEDb3F507B011De7Ff0",
+      MNG: "0xC9b23289c60783649AA327732FCCEc2f5d0aC466",
+      MMF: ""
     },
     farms: {
       CronaSwap: "0x7b1982b896cf2034a0674acf67dc7924444637e4",
       VVS: "0xDccd6455AE04b03d785F12196B492b18129564bc",
       Annex: "0xEF6d860B22cEFe19Ae124b74eb80F0c0eb8201F4",
+      _10MB : "0x9d2998B6Eed4817Ee20D7Bec73df0748f9Af969d",
+      Mongoose: "0x6F132536069F8E35ED029CEd563710CF68fE8E54"
     },
     factories: {
       VVS: "0x3b44b2a187a7b3824131f8db5a74194d0a42fc15",

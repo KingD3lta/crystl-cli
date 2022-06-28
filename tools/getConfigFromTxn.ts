@@ -50,7 +50,7 @@ export const GetConfFromTxnMenu = async (network, TacticsType) => {
     let farm = receipt.logs[0].address;
     let pid = ethers.BigNumber.from(receipt.logs[0].topics[1]);
     let [wantConfirmed, wantAddress] = await GetAndVerifyTokenFromTxn(
-      receipt.logs[3].address,
+      receipt.logs[4].address,
       provider
     );
     if (!wantConfirmed) {
@@ -141,7 +141,7 @@ export const GetConfFromTxnMenu = async (network, TacticsType) => {
       return Addresses;
     }
   }
-  if (TacticsType == "MasterChef") {
+  if (TacticsType == "MasterChef" || "SaharaStaking") {
     console.log("TXN:", txn);
     console.log("Receipt:", receipt);
     console.log(

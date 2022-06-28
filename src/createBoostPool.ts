@@ -80,9 +80,6 @@ export const createBoost = async (
   const mnemonic = process.env.MNEMONIC;
 
   const dev = await initDev(network)
-  console.log(inputData[network].V3Vaults.VaultHealer,
-  ABI.VaultHealer,
-  dev)
   const VaultHealer = new ethers.Contract(
     inputData[network].V3Vaults.VaultHealer,
     ABI.VaultHealer,

@@ -73,7 +73,6 @@ export const CreateBoostMenu = async (CSD:ChainSpecificData) => {
     BoostReq.TotalRewards,
     BoostReq.Decimals
   );
-  console.log(CSD.network, initDev, BoostReq.vid, CSD)
   ConfirmBoost(CSD.network, InitData, BoostReq.VID, CSD);
 };
 
