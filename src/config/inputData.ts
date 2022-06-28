@@ -223,7 +223,7 @@ export const inputData = {
       CronaSwap: "0x7b1982b896cf2034a0674acf67dc7924444637e4",
       VVS: "0xDccd6455AE04b03d785F12196B492b18129564bc",
       Annex: "0xEF6d860B22cEFe19Ae124b74eb80F0c0eb8201F4",
-      _10MB : "0x9d2998B6Eed4817Ee20D7Bec73df0748f9Af969d",
+      ['10MB'] : "0x9d2998B6Eed4817Ee20D7Bec73df0748f9Af969d",
       Mongoose: "0x6F132536069F8E35ED029CEd563710CF68fE8E54"
     },
     factories: {
