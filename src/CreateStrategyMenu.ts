@@ -78,5 +78,6 @@ export const CreateStrategyMenu = async () => {
     let StrategyImplementation = await PickAStrategy("Please Select the Strategy To Use", CSD.network)
     let [VaultDeployConfig, V3] = await GenerateVaultConfig(CSD, InputConfig, EncodedSelectors, StrategyImplementation, dev)
     let VaultDeploy = await DeployStrategy(VaultDeployConfig, CSD.network, StrategyImplementation.address, V3, dev)
+    console.log(VaultDeploy)
   }
 };

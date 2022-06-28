@@ -42,7 +42,7 @@ export const GenerateVaultConfig = async (
   const Strategy = new ethers.Contract(StratImplementation.address, ABI.Strategies[StratImplementation.name], dev)
   const ERC20 = new ethers.Contract(InputConfig.want, ABI.ERC20, dev);
 
-  const EarnedArray = InputConfig.earned.filter(token => token != undefined)  
+  const EarnedArray = InputConfig.earned.filter(token => token != undefined)
 
   //Get Dust Amounts
   STATUS_MSG("Getting Dust For Want and Earned Tokens:");

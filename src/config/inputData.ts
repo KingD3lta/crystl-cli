@@ -4,7 +4,7 @@ import { ValidTactics } from "./types";
 export const ABI = {
   //V3 Vault ABIs
   VaultHealer: require("./abi_files/VaultHealer_abi.json"),
-  Strategies: { Strategy: require("./abi_files/Strategy_abi.json") },
+  Strategies: { Strategy: require("./abi_files/Strategy_abi.json"), StrategyCustomRouter: require("./abi_files/StrategyCustomRouter_abi.json") },
   BoostPool: require("./abi_files/BoostPool_abi.json"),
   //VaultGetter: require("./abi_files/VaultGetterV3_abi.json"),
   //Periphery Helpers
@@ -100,8 +100,8 @@ export const eventTopics = {
   },
   MiniChef: {
     topic: "0x02d7e648dd130fc184d383e55bb126ac4c9c60e8f94bf05acdf557ba2d540b47",
-    pidPos: 1
-  }
+    pidPos: 1,
+  },
 };
 
 export const inputData = {
@@ -190,7 +190,10 @@ export const inputData = {
     ENDPOINT: process.env.CRONOS_RPC,
     V3Vaults: {
       VaultHealer: "0xba6f3b9bf74fbfa59d55e52fa722e6a5737070d0",
-      Strategies: { Strategy: "0x04153E4493bD15ABd530670F23a8Dc53D6eE3068" },
+      Strategies: {
+        Strategy: "0x04153E4493bD15ABd530670F23a8Dc53D6eE3068",
+        StrategyCustomRouter: "0xa41b7e9B1a5208137Fe7BD70cfBe327f0Fb5247e",
+      },
       BoostPool: "0x154fbf66d949a7000db0736c46c7a459c6f7b9cf",
       MagnetiteProxy: "0x5e740b6cb14b8df73a44e3b6c059e5b3310f6af9",
       AmysStakingCo: "0x35c7a156Cb47d1B117382CE6191795373eF6c085", //needs to be updated
@@ -202,7 +205,7 @@ export const inputData = {
       VVS: "0x145863Eb42Cf62847A6Ca784e6416C1682b1b2Ae",
       MMF: "0x145677FC4d9b8F19B5D56d1820c48e0443049a30",
       Annex: "0x77bEFDE82ebA4BDC4D3E4a853BF3EA4FFB49Dd58",
-      Custom: ""
+      Custom: "",
     },
     tokens: {
       CRONA: "0xadbd1231fb360047525BEdF962581F3eee7b49fe",
@@ -219,11 +222,14 @@ export const inputData = {
       ARGO: "0x47A9D630dc5b28F75d3AF3be3AAa982512Cd89Aa",
       bCRO: "0xeBAceB7F193955b946cC5dd8f8724a80671a1F2F",
       xARGO: "0xb966B5D6A0fCd5b373B180Bbe072BBFbbEe10552",
+      ["10MB"]: "0x02A8Dc66334B1cc6CD8F28Fe8DBF6b58B49b47B6",
+      ["10SHARE"]: "0xD8d40DcEE0C2B486EEBd1FEDb3F507B011De7Ff0",
     },
     farms: {
       CronaSwap: "0x7b1982b896cf2034a0674acf67dc7924444637e4",
       VVS: "0xDccd6455AE04b03d785F12196B492b18129564bc",
       Annex: "0xEF6d860B22cEFe19Ae124b74eb80F0c0eb8201F4",
+      ["10MB"]: "0x9d2998B6Eed4817Ee20D7Bec73df0748f9Af969d",
     },
     factories: {
       VVS: "0x3b44b2a187a7b3824131f8db5a74194d0a42fc15",
