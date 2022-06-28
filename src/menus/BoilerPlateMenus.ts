@@ -104,8 +104,12 @@ export const PickAStrategy = async (msg = "", network) => {
       message: msg,
     },
   ];
-  const SelectedStrategy = await inquirer.prompt(options).then((answers) => {
-    return [inputData[network].V3Vaults.Strategies[answers.PickAStrategy, answers.PickAStrategy]];
+  const StrategyImplementation = await inquirer.prompt(options).then((answers) => {
+    let StratImpl = {
+      name: answers.PickAStrategy,
+      address: inputData[network].V3Vaults.Strategies[answers.PickAStrategy]
+    }
+    return StratImpl;
   });
-  return SelectedStrategy;
+  return StrategyImplementation;
 };

@@ -34,3 +34,11 @@ export type ChainSpecificData = {
     farms: object,
     factories: object
 }
+
+export type ValidConfigData = {
+    want: string,
+    earned: string[],
+    farm: string,
+    pid: string | number ,
+    router: string,
+  }

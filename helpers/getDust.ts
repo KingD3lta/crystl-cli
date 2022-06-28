@@ -1,10 +1,12 @@
 export const calcDust = async (PriceGetter: any, wantAddr: any, earnedAddrArray: any[], Token: any) => {
-  let EarnedDustArray = new Array()
+  let EarnedDustArray: number[] = new Array()
     console.log("Calculating Want Dust...");
     console.log("Earned Array:",earnedAddrArray)
-    let val = await PriceGetter.getLPPrice(wantAddr, 18);
+    Token = await Token.attach(wantAddr);
+    let decimals = await Token.decimals();
+    let val = await PriceGetter.getLPPrice(wantAddr, decimals);
     let equalsTenCents = (1e17 / val) * 1e18;
-    const WantDust = Math.floor(Math.log2(equalsTenCents));
+    const WantDust: number = Math.floor(Math.log2(equalsTenCents));
     console.log("Want Dust Log Value:", WantDust);
   
     // // determine dust for Earned array
@@ -18,5 +20,5 @@ export const calcDust = async (PriceGetter: any, wantAddr: any, earnedAddrArray:
       EarnedDustArray.push(Math.floor(Math.log2(equalsOneDollar)));
     }
   }
-    return { WantDust, EarnedDustArray };
+    return [WantDust, EarnedDustArray] as const;
   }

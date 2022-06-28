@@ -12,11 +12,11 @@ export const getTransaction = async (
 
   const provider = new ethers.providers.JsonRpcProvider(web3EndPoint);
 
-  const txn = await provider.getTransactionReceipt(hash)
+  const txn = await provider.getTransaction(hash)
   
   console.log(txn)
-  console.log()
+  console.log(await txn.wait())
 
 };
 
-getTransaction("cronos", users.stepdev, "0x91d8cb9a15f0bca52d7df0c9b4109a5cc232362b1a0837802dbe496d0686f006");
+getTransaction("CRONOS", users.stepdev, "0x2c6580fa7d93a168d763f59aceebc19755e3074c914653c352d484e40df31467");

@@ -22,19 +22,18 @@ export const v3earn = async (network) => {
   var vidArray = Array.from({ length: numVaults }, (_, i) => i + minVid);
   console.log(chalk.blue("Vid Array:", chalk.green(vidArray)))
 
-  for (let i = 0; i < vidArray.length; i++) {
+  for (let i = 0; i < vidArray.length ; i++) {
     console.log(chalk.blue("Current Vid:",chalk.green(vidArray[i])))
     var numMaximizers = (await VaultHealer.vaultInfo(vidArray[i]))
       .numMaximizers;
     console.log("Maximisers found:", numMaximizers);
-    if(numMaximizers > 0){
+    if(numMaximizers != 0){
     var maxiArray = Array.from(
       { length: numMaximizers },
       (_, j) => j + (vidArray[i] << 16) + 1
     );
     console.log("Earning Vids:", maxiArray);
-    vidArray.shift();
-    const maxiEarnTxn = await VaultHealer.earn(maxiArray, {gasLimit: 10000000});
+    const maxiEarnTxn = await VaultHealer.earn(maxiArray, {gasLimit: 10000000, gasPrice: await provider.getGasPrice()});
     console.log(chalk.yellow("Maximisers Earned:"), chalk.cyan(await maxiEarnTxn.hash))
   }
 }

@@ -20,13 +20,11 @@ export const CAUTION_MSG = (msg) => {
   console.log(chalk.red(msg));
 };
 
-export const GenerateConfigFromDecodedTxn = async (
+export const GenerateVaultConfig = async (
   CSD,
-  ConfigFromTxn,
+  InputConfig,
   EncodedSelectors,
-  StratImplementationAddress,
-  StratImplementationName,
-  Token,
+  StratImplementation,
   dev,
   
 ) => {
@@ -36,31 +34,31 @@ export const GenerateConfigFromDecodedTxn = async (
   console.log(V3);
 
   INFO_MSG("Config Info From Txn:");
-  console.log(ConfigFromTxn);
+  console.log(InputConfig);
 
   INFO_MSG("Encoded Selectors:");
   console.log(EncodedSelectors);
-
   const PriceGetter = new ethers.Contract(V3.PriceGetter, ABI.PriceGetter, dev);
-  const Strategy = new ethers.Contract(StratImplementationAddress, ABI.Strategies[StratImplementationName], dev)
+  const Strategy = new ethers.Contract(StratImplementation.address, ABI.Strategies[StratImplementation.name], dev)
+  const ERC20 = new ethers.Contract(InputConfig.want, ABI.ERC20, dev);
 
-  const EarnedArray = ConfigFromTxn.earned.filter(token => token != undefined)  
+  const EarnedArray = InputConfig.earned.filter(token => token != undefined)  
 
   //Get Dust Amounts
   STATUS_MSG("Getting Dust For Want and Earned Tokens:");
-  const { WantDust, EarnedDustArray } = await calcDust(
+  const [ WantDust, EarnedDustArray ] = await calcDust(
     PriceGetter,
-    ConfigFromTxn.want,
+    InputConfig.want,
     EarnedArray,
-    Token
+    ERC20
   );
   console.log("WantDust:", WantDust),
     console.log("EarnedDust:", EarnedDustArray);
   //  //Get Tactics
   STATUS_MSG("Getting Tactics Strings:");
   const [tacticsA, tacticsB] = await Strategy.generateTactics(
-    ConfigFromTxn.farm,
-    ConfigFromTxn.pid, //farmPid
+    InputConfig.farm,
+    InputConfig.pid, //farmPid
     EncodedSelectors.vstReturn, //position of return value in vaultSharesTotal returnData array
     EncodedSelectors.vst, //vaultSharesTotal - includes selector and encoded call format
     EncodedSelectors.deposit, //deposit - includes selector and encoded call format
@@ -70,13 +68,12 @@ export const GenerateConfigFromDecodedTxn = async (
   );
   console.log("TacticsA:", tacticsA)
   console.log("TacticsB:", tacticsB)
-  const Router = await PickARouter("Please Select A Router That These LPs Originated from", CSD.network)
   const deploymentConfig = await Strategy.generateConfig(
     tacticsA,
     tacticsB,
-    ConfigFromTxn.want,
+    InputConfig.want,
     WantDust,
-    CSD.routers[Router],
+    InputConfig.router,
     V3.MagnetiteProxy,
     240,
     false,
