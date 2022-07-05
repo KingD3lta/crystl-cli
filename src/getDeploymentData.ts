@@ -10,6 +10,7 @@ import { initDev } from "./InitialiseWeb3";
 import { create } from "../helpers/create";
 import { calcDust } from "../helpers/getDust";
 import { PickARouter } from "../tools/Menus/BoilerPlateMenus";
+import { string } from "yargs";
 const ethers = require("ethers");
 require("dotenv").config();
 var inquirer = require("inquirer");
@@ -61,11 +62,11 @@ export const CreateStratConfigFromTxn = async (
 
   //Get Dust Amounts
   STATUS_MSG("Getting Dust For Want and Earned Tokens:");
-  const { WantDust, EarnedDustArray } = await calcDust(
-    PriceGetter,
+  const  {WantDust, EarnedDustArray}  = await calcDust(
     ConfigFromTxn.want,
-    EarnedArray,
-    Token
+    ConfigFromTxn.earned,
+    Token,
+    Dev
   );
   console.log("WantDust:", WantDust),
     console.log("EarnedDust:", EarnedDustArray);

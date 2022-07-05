@@ -47,10 +47,10 @@ export const GetConfFromTxnMenu = async (network, TacticsType) => {
     WARN_MSG(
       "PLEASE ENSURE [WANT] TOKEN PRINTED BELOW MATCHES INTENDED USER INPUT (? _ ?  )"
     );
-    let farm = receipt.logs[0].address;
-    let pid = ethers.BigNumber.from(receipt.logs[0].topics[1]);
+    let farm = receipt.logs[4].address;
+    let pid = ethers.BigNumber.from(receipt.logs[4].topics[2]);
     let [wantConfirmed, wantAddress] = await GetAndVerifyTokenFromTxn(
-      receipt.logs[4].address,
+      receipt.logs[3].address,
       provider
     );
     if (!wantConfirmed) {
