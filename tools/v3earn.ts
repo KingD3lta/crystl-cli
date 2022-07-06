@@ -33,7 +33,6 @@ export const v3earn = async (network) => {
       (_, j) => j + (vidArray[i] << 16) + 1
     );
     console.log("Earning Vids:", maxiArray);
-    vidArray.shift();
     const maxiEarnTxn = await VaultHealer.earn(maxiArray, {gasLimit: 10000000});
     console.log(chalk.yellow("Maximisers Earned:"), chalk.cyan(await maxiEarnTxn.hash))
   }
