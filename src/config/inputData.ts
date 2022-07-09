@@ -16,14 +16,14 @@ export const ABI = {
   UniSwapV2Pair: require("./abi_files/UniswapV2Pair_abi.json"),
   UniswapV2Router: require("./abi_files/UniRouter_abi.json"),
   MasterChef: require("./abi_files/MasterChef_abi.json"),
-}
+};
 
 export const users = {
   stepdev: process.env.DEPLOYER_ADDRESS,
 };
 
 export const tacticsSetup = {
-  MasterChef:  {
+  MasterChef: {
     vstReturn: "0",
     vst: "0x93f1a40b23000000",
     deposit: "0xe2bbb15824000000",
@@ -90,6 +90,14 @@ export const tacticsSetup = {
     harvest: "0x18fccc7623000000",
     SOS: "0x2f940c7023000000",
   },
+  xToken: {
+    vstReturn: "0",
+    vst: "0x70a0823130000000",
+    deposit: "0xa59f3e0c40000000",
+    withdraw: "0x67dfd4c940000000",
+    harvest: "0x67dfd4c9f0000000",
+    SOS: "0x67dfd4c940000000",
+  },
   customSetup: {
     vstReturn: "",
     vst: "",
@@ -105,13 +113,16 @@ export const inputData = {
     ENDPOINT: process.env.POLYGON_RPC,
     V3Vaults: {
       VaultHealer: "0xA1b26B5eC4a73A6a632bE1f45FfC628518c0AFD6",
-      Strategies: { Strategy: "0x57Ff558daA818B36af32A031ac92836aFd53426c", StrategyQuick: "0xb076E4b9dd071955F02fC5e388BFf3ac3bCCe5b7" },
+      Strategies: {
+        Strategy: "0x57Ff558daA818B36af32A031ac92836aFd53426c",
+        StrategyQuick: "0xb076E4b9dd071955F02fC5e388BFf3ac3bCCe5b7",
+      },
       BoostPool: "0xbB854D2DD8ED40ACBa41f6c3eC6b59A1a6A70089",
       MagnetiteProxy: "0x6c9102aDfE6903A383aD2fc12B75152cD45Dd164",
       AmysStakingCo: "",
       PriceGetter: "0x8b2d2279F722BbB38A32b5ddd050378ffdF28Ee4",
       V2VaultHealer: "0xD4d696ad5A7779F4D3A0Fc1361adf46eC51C632d",
-      IsContract: "0x5d1259992741657B7E170F595049Ed9747a4Dd7E"
+      IsContract: "0x5d1259992741657B7E170F595049Ed9747a4Dd7E",
     },
     routers: {
       SushiSwap: "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506",
@@ -159,7 +170,7 @@ export const inputData = {
       QI: "0x580A84C73811E1839F75d86d75d88cCa0c241fF4",
       SUSHI: "0x0b3F868E0BE5597D5DB7fEB59E1CADBb0fdDa50a",
       PolyDoge: "0x8A953CfE442c5E8855cc6c61b1293FA648BAE472",
-      ABR: "0x04429fbb948BBD09327763214b45e505A5293346"
+      ABR: "0x04429fbb948BBD09327763214b45e505A5293346",
     },
     farms: {
       BarberShop: "0xC6Ae34172bB4fC40c49C3f53badEbcE3Bb8E6430",
@@ -184,13 +195,16 @@ export const inputData = {
     ENDPOINT: process.env.CRONOS_RPC,
     V3Vaults: {
       VaultHealer: "0xba6f3b9bf74fbfa59d55e52fa722e6a5737070d0",
-      Strategies: {Strategy: "0x04153E4493bD15ABd530670F23a8Dc53D6eE3068", StrategySahara: "0x61208B932a98D3Ac4ed617F1f5203412bD310736"},
+      Strategies: {
+        Strategy: "0x04153E4493bD15ABd530670F23a8Dc53D6eE3068",
+        StrategySahara: "0x61208B932a98D3Ac4ed617F1f5203412bD310736",
+      },
       BoostPool: "0x154fbf66d949a7000db0736c46c7a459c6f7b9cf",
       MagnetiteProxy: "0x5e740b6cb14b8df73a44e3b6c059e5b3310f6af9",
       AmysStakingCo: "0x35c7a156Cb47d1B117382CE6191795373eF6c085", //needs to be updated
       PriceGetter: "0xb9B5792791DC8A76123A4545253D73F4624cc0B3",
       V2VaultHealer: "0x4dF0dDc29cE92106eb8C8c17e21083D4e3862533",
-      IsContract: ""
+      IsContract: "",
     },
     routers: {
       CRONASWAP: "0xcd7d16fB918511BF7269eC4f48d61D79Fb26f918",
@@ -214,17 +228,17 @@ export const inputData = {
       bCRO: "0xeBAceB7F193955b946cC5dd8f8724a80671a1F2F",
       xARGO: "0xb966B5D6A0fCd5b373B180Bbe072BBFbbEe10552",
       FER: "0x39bC1e38c842C60775Ce37566D03B41A7A66C782",
-      ['10MB']: "0x02A8Dc66334B1cc6CD8F28Fe8DBF6b58B49b47B6",
-      ['10SHARE'] : "0xD8d40DcEE0C2B486EEBd1FEDb3F507B011De7Ff0",
+      ["10MB"]: "0x02A8Dc66334B1cc6CD8F28Fe8DBF6b58B49b47B6",
+      ["10SHARE"]: "0xD8d40DcEE0C2B486EEBd1FEDb3F507B011De7Ff0",
       MNG: "0xC9b23289c60783649AA327732FCCEc2f5d0aC466",
-      MMF: ""
+      MMF: "",
     },
     farms: {
       CronaSwap: "0x7b1982b896cf2034a0674acf67dc7924444637e4",
       VVS: "0xDccd6455AE04b03d785F12196B492b18129564bc",
       Annex: "0xEF6d860B22cEFe19Ae124b74eb80F0c0eb8201F4",
-      ['10MB'] : "0x9d2998B6Eed4817Ee20D7Bec73df0748f9Af969d",
-      Mongoose: "0x6F132536069F8E35ED029CEd563710CF68fE8E54"
+      ["10MB"]: "0x9d2998B6Eed4817Ee20D7Bec73df0748f9Af969d",
+      Mongoose: "0x6F132536069F8E35ED029CEd563710CF68fE8E54",
     },
     factories: {
       VVS: "0x3b44b2a187a7b3824131f8db5a74194d0a42fc15",
@@ -238,7 +252,7 @@ export const inputData = {
     ENDPOINT: process.env.BSC_RPC,
     V3Vaults: {
       VaultHealer: "0x662018D4fbD804631920d45610E0Ee928Ca75d7c",
-      Strategies: {Strategy : "0x20058692742dE4CdeF5043c80254dE526160b16D"},
+      Strategies: { Strategy: "0x20058692742dE4CdeF5043c80254dE526160b16D" },
       BoostPool: "0xe3a76Ab419D7466724243FE318dD28F0f5F710e9",
       MagnetiteProxy: "0xcde81e620245a22afeb694db93b681798ece0d4d",
       AmysStakingCo: "0xe93d7bDDE105061e9A6dA2d7AaaB2162f7c12107",
@@ -251,7 +265,7 @@ export const inputData = {
       BiSwap: "0x3a6d8cA21D1CF76F653A67577FA0D27453350dD8",
       SushiSwap: "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506",
       Annex: "0xBa67BA73774dA585664661d22775dB9761418dC5",
-      MDX: "0x0384E9ad329396C3A6A401243Ca71633B2bC4333"
+      MDX: "0x0384E9ad329396C3A6A401243Ca71633B2bC4333",
     },
     tokens: {
       CAKE: "0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82",
@@ -261,7 +275,7 @@ export const inputData = {
       WBNB: "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
       BUSD: "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56",
       ANN: "0x98936Bde1CF1BFf1e7a8012Cee5e2583851f2067",
-      MDX: "0x9C65AB58d8d978DB963e63f2bfB7121627e3a739"
+      MDX: "0x9C65AB58d8d978DB963e63f2bfB7121627e3a739",
     },
     farms: {
       PancakeSwap: "0xa5f8C5Dbd5F286960b9d90548680aE5ebFf07652",
@@ -269,7 +283,7 @@ export const inputData = {
       BabySwap: "0xdfAa0e08e357dB0153927C7EaBB492d1F60aC730",
       BiSwap: "0xDbc1A13490deeF9c3C12b44FE77b503c1B061739",
       Annex: "0x9c821500eaba9f9737fdaadf7984dff03edc74d1",
-      MDX: "0xc48fe252aa631017df253578b1405ea399728a50"
+      MDX: "0xc48fe252aa631017df253578b1405ea399728a50",
     },
     factories: {
       PancakeSwap: "0xcA143Ce32Fe78f1f7019d7d551a6402fC5350c73",
