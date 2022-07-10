@@ -55,16 +55,17 @@ export const CreateStratConfigFromTxn = async (
 
   const VaultHealer = new ethers.Contract(V3.VaultHealer, ABI.VaultHealer, Dev);
   const Strategy = new ethers.Contract(V3.Strategies[StrategyType], ABI.Strategy, Dev);
-  const PriceGetter = new ethers.Contract(V3.PriceGetter, ABI.PriceGetter, Dev);
+  //const PriceGetter = new ethers.Contract(V3.PriceGetter, ABI.PriceGetter, Dev);
   const Token = new ethers.Contract(ConfigFromTxn.want, ABI.ERC20, Dev);
 
   const EarnedArray = ConfigFromTxn.earned.filter(token => token != undefined)  
+  console.log(EarnedArray)
 
   //Get Dust Amounts
   STATUS_MSG("Getting Dust For Want and Earned Tokens:");
   const  {WantDust, EarnedDustArray}  = await calcDust(
     ConfigFromTxn.want,
-    ConfigFromTxn.earned,
+    EarnedArray,
     Token,
     Dev
   );
@@ -85,6 +86,18 @@ export const CreateStratConfigFromTxn = async (
   console.log("TacticsA:", tacticsA)
   console.log("TacticsB:", tacticsB)
   const Router = await PickARouter("Please Select A Router That These LPs Originated from", CSD.network)
+  console.log(
+    tacticsA,
+    tacticsB,
+    ConfigFromTxn.want,
+    WantDust,
+    CSD.routers[Router],
+    V3.MagnetiteProxy,
+    240,
+    false,
+    EarnedArray,
+    EarnedDustArray
+  )
   const deploymentConfig = await Strategy.generateConfig(
     tacticsA,
     tacticsB,

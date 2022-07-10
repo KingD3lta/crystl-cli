@@ -293,4 +293,27 @@ export const inputData = {
       Annex: "0x6100af6980d35FDb119BECE4969fF6b68DA6e4ea",
     },
   },
+  MOONBEAM: {
+    ENDPOINT: process.env.MOONBEAM_RPC,
+    V3Vaults: {
+      VaultHealer: "0x14E1BC2Da67dE9e9eFd7116d9D2f6801374c32a7",
+      Strategies: { Strategy: "0x7ed45aa141AB8bD7a2db7285EE59A468d1a7B218" },
+      BoostPool: "0xadCC1c7f13E35407f87e6477871EdaFa4ab93C76",
+      MagnetiteProxy: "0x613A08637F3B602b18842B6cd66175B0673c4280",
+    },
+    routers: {
+      StellaSwap: "0x70085a09D30D6f8C4ecF6eE10120d1847383BB57",
+    },
+    tokens: {
+      STELLA: "0x0E358838ce72d5e61E0018a2ffaC4bEC5F4c88d2",
+      xSTELLA: "0x06A3b410b681c82417A906993aCeFb91bAB6A080",
+      WGLMR: "0xAcc15dC74880C9944775448304B263D191c6077F",
+      NONE: "",
+    },
+    farms: {
+
+    },
+    factories: {},
+  },
 };
+

@@ -17,6 +17,7 @@ import {
 import { PromptNetwork } from "./promptNetwork";
 import { WelcomeMenu } from "./Welcome";
 import { DeployStrategy } from "./DeployStrategy";
+import { CreateConfigManualMenu } from "./CreateConfigManualMenu";
 var inquirer = require("inquirer");
 
 //type ChainSpecificData = { tokens, routers, farms };
@@ -72,7 +73,22 @@ export const CreateMenu = async () => {
         await DeployStrategy(EncodedVaultConfig, VaultHealer, CSD.network, StrategyType);
       }
     } else {
-      //todo (NOT FROM DEPOSIT TXN)
+      let StrategyType = await SelectStrategy(CSD.network);
+      let ManualConfig = await CreateConfigManualMenu(CSD)
+      let [EncodedVaultConfig, VaultHealer] = await CreateStratConfigFromTxn(
+        CSD,
+        ManualConfig,
+        EncodedSelectors,
+        StrategyType
+      );
+      INFO_MSG(EncodedVaultConfig);
+      if (
+        await BoilerPlatePrompt(
+          "Config Successfully Generated, would you like to deploy to the chain?"
+        )
+      ) {
+        await DeployStrategy(EncodedVaultConfig, VaultHealer, CSD.network, StrategyType);
+      }
     }
   }
   if (CreateTask == "Create Boost") {

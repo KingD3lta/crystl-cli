@@ -141,6 +141,7 @@ export const GetConfFromTxnMenu = async (network, TacticsType) => {
       return Addresses;
     }
   }
+  
   if (TacticsType == "MasterChef" || "SaharaStaking") {
     console.log("TXN:", txn);
     console.log("Receipt:", receipt);
@@ -231,6 +232,8 @@ export const GetConfFromTxnMenu = async (network, TacticsType) => {
       return Addresses;
     }
   }
+  
+  
 };
 
 export const GetAndVerifyTokenFromTxn = async (token: string, dev) => {
