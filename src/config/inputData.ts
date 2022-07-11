@@ -315,5 +315,26 @@ export const inputData = {
     },
     factories: {},
   },
+  FANTOM: {
+    ENDPOINT: process.env.FANTOM_RPC,
+    V3Vaults: {
+      VaultHealer: "0x38351946dbe1b096aed86b299d48d4a4d7444ea8",
+      Strategies: { Strategy: "0x41900a479fcdfe5808edf12aa22136f98e08c803" },
+      BoostPool: "0x2cc70d5387d2c7a4d4f49fcd89cfbbca064271c2",
+      MagnetiteProxy: "0x3d5ffccf3256fc70bc1555e3d63e56534e09d2ba",
+    },
+    routers: {
+      SpookySwap: "0xF491e7B69E4244ad4002BC14e878a34207E38c29",
+      SpiritSwap: "0x16327E3FbDaCA3bcF7E38F5Af2599D2DDc33aE52",
+      TombSwap: "0x6D0176C5ea1e44b08D3dd001b0784cE42F47a3A7",
+      PaintSwap: "???"
+    },
+    tokens: {
+    },
+    farms: {
+
+    },
+    factories: {},
+  },
 };
 
