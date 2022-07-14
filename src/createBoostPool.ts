@@ -86,7 +86,8 @@ export const createBoost = async (
     dev
   );
   const boostPoolAddr = inputData[network].V3Vaults.BoostPool
-  const BOOST = await VaultHealer.createBoost(vid, boostPoolAddr, initData);
+  console.log(initData)
+  const BOOST = await VaultHealer.createBoost(vid, boostPoolAddr, initData, {gasPrice: await VaultHealer.provider.getGasPrice()});
   const BOOSTCreationTxn = await BOOST.wait();
 
   console.log(

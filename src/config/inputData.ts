@@ -276,6 +276,7 @@ export const inputData = {
       BUSD: "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56",
       ANN: "0x98936Bde1CF1BFf1e7a8012Cee5e2583851f2067",
       MDX: "0x9C65AB58d8d978DB963e63f2bfB7121627e3a739",
+      CRYSTL: "0x6FF5e1865a833B81c1DE013c925D2e3ab0B6EbD2",
     },
     farms: {
       PancakeSwap: "0xa5f8C5Dbd5F286960b9d90548680aE5ebFf07652",
@@ -297,7 +298,7 @@ export const inputData = {
     ENDPOINT: process.env.MOONBEAM_RPC,
     V3Vaults: {
       VaultHealer: "0x14E1BC2Da67dE9e9eFd7116d9D2f6801374c32a7",
-      Strategies: { Strategy: "0x7ed45aa141AB8bD7a2db7285EE59A468d1a7B218" },
+      Strategies: { Strategy: "0x7ed45aa141AB8bD7a2db7285EE59A468d1a7B218", StrategyWrapperToken: "0x9Fa098f612E26bF8394541031e334D7F305a3b0f" },
       BoostPool: "0xadCC1c7f13E35407f87e6477871EdaFa4ab93C76",
       MagnetiteProxy: "0x613A08637F3B602b18842B6cd66175B0673c4280",
     },
@@ -306,11 +307,10 @@ export const inputData = {
     },
     tokens: {
       STELLA: "0x0E358838ce72d5e61E0018a2ffaC4bEC5F4c88d2",
-      xSTELLA: "0x06A3b410b681c82417A906993aCeFb91bAB6A080",
       WGLMR: "0xAcc15dC74880C9944775448304B263D191c6077F",
-      NONE: "",
     },
     farms: {
+      xSTELLA: "0x06A3b410b681c82417A906993aCeFb91bAB6A080",
 
     },
     factories: {},
@@ -319,7 +319,7 @@ export const inputData = {
     ENDPOINT: process.env.FANTOM_RPC,
     V3Vaults: {
       VaultHealer: "0x38351946dbe1b096aed86b299d48d4a4d7444ea8",
-      Strategies: { Strategy: "0x41900a479fcdfe5808edf12aa22136f98e08c803" },
+      Strategies: { Strategy: "0x6d1bCE38d09F463992C79bd1400B1f57b9aa0BD0" },
       BoostPool: "0x2cc70d5387d2c7a4d4f49fcd89cfbbca064271c2",
       MagnetiteProxy: "0x3d5ffccf3256fc70bc1555e3d63e56534e09d2ba",
     },
@@ -327,14 +327,30 @@ export const inputData = {
       SpookySwap: "0xF491e7B69E4244ad4002BC14e878a34207E38c29",
       SpiritSwap: "0x16327E3FbDaCA3bcF7E38F5Af2599D2DDc33aE52",
       TombSwap: "0x6D0176C5ea1e44b08D3dd001b0784cE42F47a3A7",
-      PaintSwap: "???"
+      PaintSwap: "???",
+    },
+    tokens: {
+      BOO: "0x841FAD6EAe12c286d1Fd18d1d525DFfA75C7EFFE",
+      LSHARE: "0xCbE0CA46399Af916784cADF5bCC3aED2052D6C45",
+      LQDR: "0x10b620b2dbAC4Faa7D7FFD71Da486f5D44cd86f9",
+    },
+    farms: {},
+    factories: {},
+  },
+  BTTC: { //todo, fix this
+
+    ENDPOINT: process.env.BTTC_RPC,
+    V3Vaults: {
+      VaultHealer: "",
+      Strategies: { Strategy: "0x454EA54A1E22fE1e22D09408a8e0099E74bfc1E4" },
+      BoostPool: "",
+      MagnetiteProxy: "",
+    },
+    routers: {
     },
     tokens: {
     },
-    farms: {
-
-    },
+    farms: {},
     factories: {},
   },
 };
-

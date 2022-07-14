@@ -1,4 +1,5 @@
 import { inputData, ABI } from "../src/config/inputData";
+import { INFO_MSG } from "../src/getDeploymentData";
 const ethers = require("ethers");
 const chalk = require("chalk");
 require("dotenv").config();
@@ -15,12 +16,17 @@ export const v3earn = async (network) => {
 
   const dev = wallet.connect(provider);
 
+
   const VaultHealer = new ethers.Contract(vaultHealerAddr, ABI.VaultHealer, dev);
   const minVid = 1;
   const numVaults = await VaultHealer.numVaultsBase();
 
   var vidArray = Array.from({ length: numVaults }, (_, i) => i + minVid);
   console.log(chalk.blue("Vid Array:", chalk.green(vidArray)))
+
+  let gasPrice = await VaultHealer.provider.getGasPrice()
+  INFO_MSG("Gas Price:")
+  console.log(ethers.utils.parseUnits(gasPrice.toString(), "wei"))
 
   for (let i = 0; i < vidArray.length; i++) {
     console.log(chalk.blue("Current Vid:",chalk.green(vidArray[i])))
@@ -33,12 +39,12 @@ export const v3earn = async (network) => {
       (_, j) => j + (vidArray[i] << 16) + 1
     );
     console.log("Earning Vids:", maxiArray);
-    const maxiEarnTxn = await VaultHealer.earn(maxiArray, {gasLimit: 10000000});
+    const maxiEarnTxn = await VaultHealer.earn(maxiArray, {gasLimit: 10000000, gasPrice: gasPrice});
     console.log(chalk.yellow("Maximisers Earned:"), chalk.cyan(await maxiEarnTxn.hash))
   }
 }
   console.log("Earning Vids:", vidArray);
-  const convEarnTxn = await VaultHealer.earn(vidArray,{gasLimit: 10000000});
+  const convEarnTxn = await VaultHealer.earn(vidArray,{gasLimit: 10000000, gasPrice: gasPrice});
   console.log(chalk.yellow("Vaults Earned:"), chalk.cyan(await convEarnTxn.hash))
 };
 

@@ -13,7 +13,7 @@ export const calcDust = async (
   let UniPair = new ethers.Contract(wantAddr, ABI.UniSwapV2Pair, dev);
 
   console.log(earnedAddrArray);
-  let EarnedDustArray: number[] = new Array();
+  let EarnedDustArray = new Array();
   let WantDust: number;
   const TokenPrices = [
     {
@@ -78,11 +78,12 @@ export const calcDust = async (
   }
   INFO_MSG("Dust Log for staked token is:")
   console.log(WantDust)
+  if (earnedAddrArray.length < 1  ) {
+    console.log("no earned token")
+     return { WantDust, EarnedDustArray };
+
+  } else {
   for (let i = 0; i < earnedAddrArray.length; i++) {
-    if (earnedAddrArray[i] == "" ) {
-      console.log("no earned token")
-      EarnedDustArray.push(0);
-    } else {
       Token = await Token.attach(earnedAddrArray[i]);
       let earnedDecimals = await Token.decimals();
       let aDollarWorth = Math.pow(10, earnedDecimals) / answers.earnedPrice;
