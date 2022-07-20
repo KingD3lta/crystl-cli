@@ -1,4 +1,5 @@
 import { getStorageAt } from "../helpers/getStorageAt";
+import { DepositTransactionParseMenu } from "../tools/DepositTransactionParse";
 import { CreateMenu } from "./CreateMenu";
 import { ManagementMenu } from "./ManagementMenu";
 
@@ -48,7 +49,7 @@ export const WelcomeMenu = async () => {
     await ManagementMenu();
   }
   if (Task == "Fun Tools") {
-    await getStorageAt()
+    await DepositTransactionParseMenu()
   }
 };
 

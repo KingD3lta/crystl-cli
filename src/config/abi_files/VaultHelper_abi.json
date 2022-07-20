@@ -1,0 +1,59 @@
+[
+    {
+        "inputs": [
+            {
+                "internalType": "address[]",
+                "name": "_addresses",
+                "type": "address[]"
+            }
+        ],
+        "name": "_getIsERC20Bytes",
+        "outputs": [
+            {
+                "internalType": "bytes",
+                "name": "",
+                "type": "bytes"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address[]",
+                "name": "_addresses",
+                "type": "address[]"
+            }
+        ],
+        "name": "checkIfContracts",
+        "outputs": [
+            {
+                "internalType": "bytes",
+                "name": "contractArray",
+                "type": "bytes"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "_address",
+                "type": "address"
+            }
+        ],
+        "name": "getTokenName",
+        "outputs": [
+            {
+                "internalType": "string",
+                "name": "",
+                "type": "string"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    }
+]
