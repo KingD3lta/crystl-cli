@@ -7,7 +7,7 @@ export type ValidTactics =
     deposit,
     withdraw,
     harvest,
-    sos
+    SOS
 }
 
 export type EncodedSelectors = {
