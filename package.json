@@ -76,7 +76,8 @@
     "vhDep": "ts-node ./test/VaultHealerDeposit",
     "tacticsChad": "ts-node ./helpers/tacticsChad",
     "charge": "ts-node ./src/controlRoom",
-    "crystl": "ts-node ./src/Welcome"
+    "crystl": "ts-node ./src/Welcome",
+    "EARN": "ts-node ./tools/v3earnUpgrade"
   },
   "author": "",
   "license": "ISC"

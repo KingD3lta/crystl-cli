@@ -48,7 +48,7 @@ export const v3earn = async (network) => {
         let maxiEarnCallVids = maxiArray.slice(j, j + vidsToEarn)
         console.log("Earning Vids:", maxiEarnCallVids);
         const maxiEarnTxn = await VaultHealer.earn(maxiEarnCallVids, {
-          gasLimit: 10000000,
+          gasLimit: 3000000,
           gasPrice: gasPrice,
           //nonce: nonce,
         });
@@ -65,7 +65,7 @@ export const v3earn = async (network) => {
     let earnCallVids = vidArray.slice(i, i + vidsToEarn)
   console.log("Earning Vids:", earnCallVids);
   const convEarnTxn = await VaultHealer.earn(earnCallVids, {
-    gasLimit: 10000000,
+    gasLimit: 3000000,
     gasPrice: gasPrice,
     //nonce: nonce,
   });

@@ -6,11 +6,12 @@ export const ABI = {
   VaultHealer: require("./abi_files/VaultHealer_abi.json"),
   Strategy: require("./abi_files/Strategy_abi.json"),
   BoostPool: require("./abi_files/BoostPool_abi.json"),
-  //VaultGetter: require("./abi_files/VaultGetterV3_abi.json"),
   //Periphery Helpers
   PriceGetter: require("./abi_files/PriceGetter_abi.json"),
   AmysStakingCo: require("./abi_files/AmysStakingCoV2_abi.json"),
   TokenDataGetter: require("./abi_files/TokenDataGetter_abi.json"),
+  VaultGetter: require("./abi_files/VaultGetterV3_abi.json"),
+
   //External Contracts
   ERC20: require("./abi_files/ERC20_abi.json"),
   UniV2Factory: require("./abi_files/UniV2Factory_abi.json"),
@@ -124,6 +125,7 @@ export const inputData = {
       PriceGetter: "0x8b2d2279F722BbB38A32b5ddd050378ffdF28Ee4",
       V2VaultHealer: "0xD4d696ad5A7779F4D3A0Fc1361adf46eC51C632d",
       TokenDataGetter: "0xEfAAE95327007A77DF4F774da1Dac81A6c881819",
+      VaultGetterV3: "0x28075bAaD278304382C08ed431fcaDd7e66F2696"
     },
     routers: {
       SushiSwap: "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506",
@@ -206,6 +208,7 @@ export const inputData = {
       PriceGetter: "0xb9B5792791DC8A76123A4545253D73F4624cc0B3",
       V2VaultHealer: "0x4dF0dDc29cE92106eb8C8c17e21083D4e3862533",
       TokenDataGetter: "",
+      VaultGetterV3: "0x151c430DC5050439EE25237131e0A79c46EC54A4"
     },
     routers: {
       CRONASWAP: "0xcd7d16fB918511BF7269eC4f48d61D79Fb26f918",
@@ -258,7 +261,8 @@ export const inputData = {
       MagnetiteProxy: "0xcde81e620245a22afeb694db93b681798ece0d4d",
       AmysStakingCo: "0xe93d7bDDE105061e9A6dA2d7AaaB2162f7c12107",
       PriceGetter: "0x6993fFaB6FD7c483f33A5E3EFDFEA676425C8F31",
-      TokenDataGetter: ""
+      TokenDataGetter: "",
+      VaultGetterV3: "0x390f3a0020d07eeee7c416ea5d5b5851ec8c6ec6"
     },
     routers: {
       PancakeSwap: "0x10ED43C718714eb63d5aA57B78B54704E256024E",
@@ -303,7 +307,8 @@ export const inputData = {
       Strategies: { Strategy: "0x7ed45aa141AB8bD7a2db7285EE59A468d1a7B218", StrategyWrapperToken: "0x9Fa098f612E26bF8394541031e334D7F305a3b0f" },
       BoostPool: "0xadCC1c7f13E35407f87e6477871EdaFa4ab93C76",
       MagnetiteProxy: "0x613A08637F3B602b18842B6cd66175B0673c4280",
-      TokenDataGetter: ""
+      TokenDataGetter: "",
+      VaultGetterV3: "0xE1cbecb5A3324fA5d8C59Fcfdc2752163734a292"
     },
     routers: {
       StellaSwap: "0x70085a09D30D6f8C4ecF6eE10120d1847383BB57",

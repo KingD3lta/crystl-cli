@@ -6,16 +6,21 @@ var inquirer = require("inquirer");
 
 export const autoCalcDust = async (
   price: number,
-  decimals: number,
+  decimals: any,
   isWant: boolean
 ) => {
   // for calculating dust with prices already determined
   if (isWant) {
     let tenCentsWorth =
       (Math.pow(10, decimals) / price) * Math.pow(10, decimals - 1);
+      console.log("TEN CENTS WORTH:", tenCentsWorth)
+      console.log("DUST:",Math.floor(Math.log2(tenCentsWorth)))
     return Math.floor(Math.log2(tenCentsWorth));
   } else {
-    let aDollarWorth = Math.pow(10, decimals) / price;
+    console.log(decimals.toNumber())
+    let aDollarWorth = (Math.pow(10, decimals) / price) * Math.pow(10, decimals);
+    console.log("A DOLLAR WORTH:",aDollarWorth)
+    console.log("DUST:",Math.floor(Math.log2(aDollarWorth)))
     return Math.floor(Math.log2(aDollarWorth));
   }
 };
