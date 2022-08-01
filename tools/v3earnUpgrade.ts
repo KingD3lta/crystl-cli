@@ -51,7 +51,7 @@ export const V3Earn = async () => {
   const V3Addresses: any = inputData[CSD.network].V3Vaults;
 
   const [blockTime, latestBlock]: number & any = await calculateBlockTime(dev);
-  const approxBlocksPerDay = Math.floor(86400 / blockTime);
+  const approxBlocksPerPeriod = Math.floor(21600 / blockTime);
 
 
   const maxEarnsPerCall = 8
@@ -68,11 +68,11 @@ export const V3Earn = async () => {
     dev
   );
 
+  console.log(`Checkings Vaults Who's last earned block is before block: ${latestBlock.number - approxBlocksPerPeriod}`)
+
   let activeVaults: any[] = await VaultGetter.getActiveVaultsLastEarnedBefore(
-    latestBlock.number - approxBlocksPerDay
-  );
-  let chainID = (dev.provider._network.chainId)
-  
+    latestBlock.number - approxBlocksPerPeriod
+  );  
   if (activeVaults.length != 0) {
     let activeVids: number[] = new Array();
 
@@ -83,23 +83,22 @@ export const V3Earn = async () => {
 
     for (let i = 0; i < activeVids.length; i += maxEarnsPerCall) {
       let vidsToEarn: number[] = activeVids.slice(i, i + maxEarnsPerCall);
-      let gasPrice = chainID == 137 ? await dev.provider.getGasPrice() * 1.1
       console.log(vidsToEarn)
 
       console.log((await dev.provider.getGasPrice()).toNumber())
-      let EARN_CALL: any = await VaultHealer.earn(vidsToEarn, {gasLimit: 10000000, gasPrice});
+      let EARN_CALL: any = await VaultHealer.earn(vidsToEarn, {gasLimit: 10000000, gasPrice: await dev.provider.getGasPrice()});
       let EARN_CALL_RECEIPT: any = await EARN_CALL.wait(1);
       console.log(EARN_CALL_RECEIPT)
 
       
     }
   } else {
-    console.log(`All Vaults have been earned in the last ${approxBlocksPerDay} blocks :) Have a nice day!`);
+    console.log(`All Vaults have been earned in the last ${approxBlocksPerPeriod} blocks :) Have a nice day!`);
   }
 };
 
 export const calculateBlockTime = async (dev) => {
-  const delayBetweenSamples: number = 250;
+  const delayBetweenSamples: number = 25000;
   const latestBlock: any = await dev.provider.getBlock();
   const bottomRangeBlockNumber: number =
     latestBlock.number - delayBetweenSamples;
