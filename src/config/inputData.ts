@@ -125,7 +125,7 @@ export const inputData = {
       PriceGetter: "0x8b2d2279F722BbB38A32b5ddd050378ffdF28Ee4",
       V2VaultHealer: "0xD4d696ad5A7779F4D3A0Fc1361adf46eC51C632d",
       TokenDataGetter: "0xEfAAE95327007A77DF4F774da1Dac81A6c881819",
-      VaultGetterV3: "0x28075bAaD278304382C08ed431fcaDd7e66F2696"
+      VaultGetterV3: "0x28075bAaD278304382C08ed431fcaDd7e66F2696",
     },
     routers: {
       SushiSwap: "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506",
@@ -208,7 +208,7 @@ export const inputData = {
       PriceGetter: "0xb9B5792791DC8A76123A4545253D73F4624cc0B3",
       V2VaultHealer: "0x4dF0dDc29cE92106eb8C8c17e21083D4e3862533",
       TokenDataGetter: "",
-      VaultGetterV3: "0x151c430DC5050439EE25237131e0A79c46EC54A4"
+      VaultGetterV3: "0x151c430DC5050439EE25237131e0A79c46EC54A4",
     },
     routers: {
       CRONASWAP: "0xcd7d16fB918511BF7269eC4f48d61D79Fb26f918",
@@ -262,7 +262,7 @@ export const inputData = {
       AmysStakingCo: "0xe93d7bDDE105061e9A6dA2d7AaaB2162f7c12107",
       PriceGetter: "0x6993fFaB6FD7c483f33A5E3EFDFEA676425C8F31",
       TokenDataGetter: "",
-      VaultGetterV3: "0x390f3a0020d07eeee7c416ea5d5b5851ec8c6ec6"
+      VaultGetterV3: "0x390f3a0020d07eeee7c416ea5d5b5851ec8c6ec6",
     },
     routers: {
       PancakeSwap: "0x10ED43C718714eb63d5aA57B78B54704E256024E",
@@ -304,11 +304,14 @@ export const inputData = {
     ENDPOINT: process.env.MOONBEAM_RPC,
     V3Vaults: {
       VaultHealer: "0x14E1BC2Da67dE9e9eFd7116d9D2f6801374c32a7",
-      Strategies: { Strategy: "0x7ed45aa141AB8bD7a2db7285EE59A468d1a7B218", StrategyWrapperToken: "0x9Fa098f612E26bF8394541031e334D7F305a3b0f" },
+      Strategies: {
+        Strategy: "0x7ed45aa141AB8bD7a2db7285EE59A468d1a7B218",
+        StrategyWrapperToken: "0x9Fa098f612E26bF8394541031e334D7F305a3b0f",
+      },
       BoostPool: "0xadCC1c7f13E35407f87e6477871EdaFa4ab93C76",
       MagnetiteProxy: "0x613A08637F3B602b18842B6cd66175B0673c4280",
       TokenDataGetter: "",
-      VaultGetterV3: "0xE1cbecb5A3324fA5d8C59Fcfdc2752163734a292"
+      VaultGetterV3: "0xE1cbecb5A3324fA5d8C59Fcfdc2752163734a292",
     },
     routers: {
       StellaSwap: "0x70085a09D30D6f8C4ecF6eE10120d1847383BB57",
@@ -319,18 +322,17 @@ export const inputData = {
     },
     farms: {
       xSTELLA: "0x06A3b410b681c82417A906993aCeFb91bAB6A080",
-
     },
     factories: {},
   },
-  FANTOM: {
+  FTM: {
     ENDPOINT: process.env.FANTOM_RPC,
     V3Vaults: {
       VaultHealer: "0x38351946dbe1b096aed86b299d48d4a4d7444ea8",
       Strategies: { Strategy: "0x6d1bCE38d09F463992C79bd1400B1f57b9aa0BD0" },
       BoostPool: "0x2cc70d5387d2c7a4d4f49fcd89cfbbca064271c2",
       MagnetiteProxy: "0x3d5ffccf3256fc70bc1555e3d63e56534e09d2ba",
-      TokenDataGetter: ""
+      TokenDataGetter: "",
     },
     routers: {
       SpookySwap: "0xF491e7B69E4244ad4002BC14e878a34207E38c29",
@@ -346,7 +348,8 @@ export const inputData = {
     farms: {},
     factories: {},
   },
-  BTTC: { //todo, fix this
+  BTTC: {
+    //todo, fix this
 
     ENDPOINT: process.env.BTTC_RPC,
     V3Vaults: {
@@ -356,10 +359,8 @@ export const inputData = {
       MagnetiteProxy: "",
       TokenDataGetter: "",
     },
-    routers: {
-    },
-    tokens: {
-    },
+    routers: {},
+    tokens: {},
     farms: {},
     factories: {},
   },

@@ -6,10 +6,9 @@ import { PromptNetwork } from "../src/promptNetwork";
 const ethers = require("ethers");
 const inquirer = require("inquirer");
 
-const FEActiveVids: number[] = [3, 4, 5, 6, 7, 11, 12, 15, 19, 20, 21, 22];
 
 //INSERT THE VIDS TO PAUSE HERE ... make sure you clear this array when you're done with it for the love of god...
-const vidsToPause: number [] = []
+const vidsToPause: number [] = [0x01,0x03,0x04,0x060002]
 
 export const PauserV3 = async () => {
   const CSD = await PromptNetwork();
@@ -50,7 +49,7 @@ export const PauserV3 = async () => {
       return response.confirmPause;
     });
   if (ConfirmPause) {
-    const MulticallPause: any = await VaultHealer.multicall(encodedPauseCallArray);
+    const MulticallPause: any = await VaultHealer.multicall(encodedPauseCallArray, { gasPrice: await VaultHealer.provider.getGasPrice()});
     await MulticallPause.wait(1)
     INFO_MSG("Pause Transaction Hash:")
     console.log(MulticallPause.hash)

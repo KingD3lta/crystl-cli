@@ -50,8 +50,8 @@ export const WelcomeMenu = async () => {
     await ManagementMenu();
   }
   if (Task == "Fun Tools") {
-    //await PauserV3();
-    await DepositTransactionParseMenu()
+    await PauserV3();
+    //await DepositTransactionParseMenu()
   }
 };
 

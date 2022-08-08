@@ -12,49 +12,25 @@
 	},
 	{
 		"inputs": [],
+		"name": "getActiveBoostedVaults",
+		"outputs": [
+			{
+				"internalType": "uint256[]",
+				"name": "vids",
+				"type": "uint256[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
 		"name": "getActiveVaults",
 		"outputs": [
 			{
-				"components": [
-					{
-						"internalType": "uint256",
-						"name": "vid",
-						"type": "uint256"
-					},
-					{
-						"internalType": "address",
-						"name": "want",
-						"type": "address"
-					},
-					{
-						"internalType": "uint8",
-						"name": "noAutoEarn",
-						"type": "uint8"
-					},
-					{
-						"internalType": "bool",
-						"name": "active",
-						"type": "bool"
-					},
-					{
-						"internalType": "uint48",
-						"name": "lastEarnBlock",
-						"type": "uint48"
-					},
-					{
-						"internalType": "uint16",
-						"name": "numBoosts",
-						"type": "uint16"
-					},
-					{
-						"internalType": "uint16",
-						"name": "numMaximizers",
-						"type": "uint16"
-					}
-				],
-				"internalType": "struct VaultGetterV3.VaultInfo[]",
-				"name": "vaultInfo",
-				"type": "tuple[]"
+				"internalType": "uint256[]",
+				"name": "vids",
+				"type": "uint256[]"
 			}
 		],
 		"stateMutability": "view",
@@ -71,46 +47,28 @@
 		"name": "getActiveVaultsLastEarnedBefore",
 		"outputs": [
 			{
-				"components": [
-					{
-						"internalType": "uint256",
-						"name": "vid",
-						"type": "uint256"
-					},
-					{
-						"internalType": "address",
-						"name": "want",
-						"type": "address"
-					},
-					{
-						"internalType": "uint8",
-						"name": "noAutoEarn",
-						"type": "uint8"
-					},
-					{
-						"internalType": "bool",
-						"name": "active",
-						"type": "bool"
-					},
-					{
-						"internalType": "uint48",
-						"name": "lastEarnBlock",
-						"type": "uint48"
-					},
-					{
-						"internalType": "uint16",
-						"name": "numBoosts",
-						"type": "uint16"
-					},
-					{
-						"internalType": "uint16",
-						"name": "numMaximizers",
-						"type": "uint16"
-					}
-				],
-				"internalType": "struct VaultGetterV3.VaultInfo[]",
-				"name": "vaultInfo",
-				"type": "tuple[]"
+				"internalType": "uint256[]",
+				"name": "vids",
+				"type": "uint256[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "token",
+				"type": "address"
+			}
+		],
+		"name": "getActiveVaultsWant",
+		"outputs": [
+			{
+				"internalType": "uint256[]",
+				"name": "vids",
+				"type": "uint256[]"
 			}
 		],
 		"stateMutability": "view",
@@ -121,46 +79,22 @@
 		"name": "getAllVaults",
 		"outputs": [
 			{
-				"components": [
-					{
-						"internalType": "uint256",
-						"name": "vid",
-						"type": "uint256"
-					},
-					{
-						"internalType": "address",
-						"name": "want",
-						"type": "address"
-					},
-					{
-						"internalType": "uint8",
-						"name": "noAutoEarn",
-						"type": "uint8"
-					},
-					{
-						"internalType": "bool",
-						"name": "active",
-						"type": "bool"
-					},
-					{
-						"internalType": "uint48",
-						"name": "lastEarnBlock",
-						"type": "uint48"
-					},
-					{
-						"internalType": "uint16",
-						"name": "numBoosts",
-						"type": "uint16"
-					},
-					{
-						"internalType": "uint16",
-						"name": "numMaximizers",
-						"type": "uint16"
-					}
-				],
-				"internalType": "struct VaultGetterV3.VaultInfo[]",
-				"name": "vaultInfo",
-				"type": "tuple[]"
+				"internalType": "uint256[]",
+				"name": "vids",
+				"type": "uint256[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getBoostedVaults",
+		"outputs": [
+			{
+				"internalType": "uint256[]",
+				"name": "vids",
+				"type": "uint256[]"
 			}
 		],
 		"stateMutability": "view",
@@ -171,46 +105,9 @@
 		"name": "getPausedVaults",
 		"outputs": [
 			{
-				"components": [
-					{
-						"internalType": "uint256",
-						"name": "vid",
-						"type": "uint256"
-					},
-					{
-						"internalType": "address",
-						"name": "want",
-						"type": "address"
-					},
-					{
-						"internalType": "uint8",
-						"name": "noAutoEarn",
-						"type": "uint8"
-					},
-					{
-						"internalType": "bool",
-						"name": "active",
-						"type": "bool"
-					},
-					{
-						"internalType": "uint48",
-						"name": "lastEarnBlock",
-						"type": "uint48"
-					},
-					{
-						"internalType": "uint16",
-						"name": "numBoosts",
-						"type": "uint16"
-					},
-					{
-						"internalType": "uint16",
-						"name": "numMaximizers",
-						"type": "uint16"
-					}
-				],
-				"internalType": "struct VaultGetterV3.VaultInfo[]",
-				"name": "vaultInfo",
-				"type": "tuple[]"
+				"internalType": "uint256[]",
+				"name": "vids",
+				"type": "uint256[]"
 			}
 		],
 		"stateMutability": "view",
@@ -227,46 +124,9 @@
 		"name": "getVaultsLastEarnedAfter",
 		"outputs": [
 			{
-				"components": [
-					{
-						"internalType": "uint256",
-						"name": "vid",
-						"type": "uint256"
-					},
-					{
-						"internalType": "address",
-						"name": "want",
-						"type": "address"
-					},
-					{
-						"internalType": "uint8",
-						"name": "noAutoEarn",
-						"type": "uint8"
-					},
-					{
-						"internalType": "bool",
-						"name": "active",
-						"type": "bool"
-					},
-					{
-						"internalType": "uint48",
-						"name": "lastEarnBlock",
-						"type": "uint48"
-					},
-					{
-						"internalType": "uint16",
-						"name": "numBoosts",
-						"type": "uint16"
-					},
-					{
-						"internalType": "uint16",
-						"name": "numMaximizers",
-						"type": "uint16"
-					}
-				],
-				"internalType": "struct VaultGetterV3.VaultInfo[]",
-				"name": "vaultInfo",
-				"type": "tuple[]"
+				"internalType": "uint256[]",
+				"name": "vids",
+				"type": "uint256[]"
 			}
 		],
 		"stateMutability": "view",
@@ -283,46 +143,9 @@
 		"name": "getVaultsLastEarnedBefore",
 		"outputs": [
 			{
-				"components": [
-					{
-						"internalType": "uint256",
-						"name": "vid",
-						"type": "uint256"
-					},
-					{
-						"internalType": "address",
-						"name": "want",
-						"type": "address"
-					},
-					{
-						"internalType": "uint8",
-						"name": "noAutoEarn",
-						"type": "uint8"
-					},
-					{
-						"internalType": "bool",
-						"name": "active",
-						"type": "bool"
-					},
-					{
-						"internalType": "uint48",
-						"name": "lastEarnBlock",
-						"type": "uint48"
-					},
-					{
-						"internalType": "uint16",
-						"name": "numBoosts",
-						"type": "uint16"
-					},
-					{
-						"internalType": "uint16",
-						"name": "numMaximizers",
-						"type": "uint16"
-					}
-				],
-				"internalType": "struct VaultGetterV3.VaultInfo[]",
-				"name": "vaultInfo",
-				"type": "tuple[]"
+				"internalType": "uint256[]",
+				"name": "vids",
+				"type": "uint256[]"
 			}
 		],
 		"stateMutability": "view",
@@ -333,46 +156,28 @@
 		"name": "getVaultsNoAutoEarn",
 		"outputs": [
 			{
-				"components": [
-					{
-						"internalType": "uint256",
-						"name": "vid",
-						"type": "uint256"
-					},
-					{
-						"internalType": "address",
-						"name": "want",
-						"type": "address"
-					},
-					{
-						"internalType": "uint8",
-						"name": "noAutoEarn",
-						"type": "uint8"
-					},
-					{
-						"internalType": "bool",
-						"name": "active",
-						"type": "bool"
-					},
-					{
-						"internalType": "uint48",
-						"name": "lastEarnBlock",
-						"type": "uint48"
-					},
-					{
-						"internalType": "uint16",
-						"name": "numBoosts",
-						"type": "uint16"
-					},
-					{
-						"internalType": "uint16",
-						"name": "numMaximizers",
-						"type": "uint16"
-					}
-				],
-				"internalType": "struct VaultGetterV3.VaultInfo[]",
-				"name": "vaultInfo",
-				"type": "tuple[]"
+				"internalType": "uint256[]",
+				"name": "vids",
+				"type": "uint256[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "token",
+				"type": "address"
+			}
+		],
+		"name": "getVaultsWant",
+		"outputs": [
+			{
+				"internalType": "uint256[]",
+				"name": "vids",
+				"type": "uint256[]"
 			}
 		],
 		"stateMutability": "view",
