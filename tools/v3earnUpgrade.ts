@@ -49,12 +49,13 @@ export const V3Earn = async () => {
   const CSD: ChainSpecificData = await PromptNetwork();
   const dev: any = await initDev(CSD.network);
   const V3Addresses: any = inputData[CSD.network].V3Vaults;
+  let chainID:number = (dev.provider._network.chainId)
 
   const [blockTime, latestBlock]: number & any = await calculateBlockTime(dev);
   const approxBlocksPerDay = Math.floor(86400 / blockTime);
 
 
-  const maxEarnsPerCall = 8
+  const maxEarnsPerCall:number = 8
 
   const VaultHealer: any = new ethers.Contract(
     V3Addresses.VaultHealer,
@@ -71,7 +72,6 @@ export const V3Earn = async () => {
   let activeVaults: any[] = await VaultGetter.getActiveVaultsLastEarnedBefore(
     latestBlock.number - approxBlocksPerDay
   );
-  let chainID = (dev.provider._network.chainId)
   
   if (activeVaults.length != 0) {
     let activeVids: number[] = new Array();
@@ -83,7 +83,7 @@ export const V3Earn = async () => {
 
     for (let i = 0; i < activeVids.length; i += maxEarnsPerCall) {
       let vidsToEarn: number[] = activeVids.slice(i, i + maxEarnsPerCall);
-      let gasPrice = chainID == 137 ? await dev.provider.getGasPrice() * 1.1
+      let gasPrice = await dev.provider.getGasPrice() 
       console.log(vidsToEarn)
 
       console.log((await dev.provider.getGasPrice()).toNumber())
