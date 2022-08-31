@@ -1,10 +1,6 @@
 # WELCOME TO THE CRYSTL COMMAND LINE INTERFACE (ALPHA, RELEASE v0.1)
 
-***Important Notice: This repository is a work in progress. For now, please make use of the files in the root directory;***
->>createMaxi.ts
->>createVault.ts
-and from /src you may use;
->>createBoostPool
+***Important Notice: This repository is a work in progress***
 
 
 #### Setting up an .env file
@@ -15,70 +11,34 @@ You'll want to create a file in the root of the repository called .env, and fill
 >>MNEMONIC = your mnemonic phrase
 >>MY_PRIVATE_KEY = your private key 
 
->>POLYGON_RPC = your polygon RPC endpoint (preferably private RPC)
->>CRONOS_RPC = your cronos RPC endpoint  (preferably private RPC)
->>BSC_RPC = your bsc RPC endpoint (preferably private RPC)
+>>CHAIN_RPC = your  RPC endpoint (preferably private RPC)
 
-Please note, I'll be adding more support for more RPCs as time goes on, I'll keep the readme updated with supported chains. I recommend Moralis, Alchemy or getBlock for private end points! 
+### Motives
 
-#### How to Use createMaxi/createVault scripts
+Crystl's V3 Vaulting Infrastructure is exceptionally interoperable, and has a lot of support for a lot of different types of yield contracts, however, with this level of interoperability comes a significant UX speed-bump. This CLI serves to obfuscate a lot of that complexity away and just allows the end user to create Vaults and Maximisers without having to know the ins and outs.
 
-- First, let's walk through setting up the correct data. There is a highly experiemntal script called getDeploymentData.ts that can be used on some MasterChefs to pull data from them automatically. These tend to have issues with larger chefs, as they'll save duplicates and require manual editing of the config files they create. This is **NOT** recommended unless you're fully aware of what you're doing :)
+I'll give a brief overview of what goes into making a vault below. It's not nearly as verbose as what the contract's creators will be able to explain, but it aims to be as simple as possible.
 
-- The getDeploymentData script creates configs with the following format, and createVault/createMaxi take this object as an input. The sytnax is as follows; 
-`WBNB_USDT: {
-chef: "0xa5f8C5Dbd5F286960b9d90548680aE5ebFf07652",
-pid: 13,
-want: "0x16b9a82891338f9bA80E2D6970FddA79D1eb0daE",
-wantName: "WBNB_USDT",
-earned: ["0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82"],
-eDecs: ["18"],
-router: "0x10ED43C718714eb63d5aA57B78B54704E256024E",
-name: "PancakeSwap",
-type: "Other",
-}`
-Generally speaking, all you'll have to do is find the file that corresponds with the farm you want to deploy a vault from, copy and paste the last object, and change the pid, want, and wantName values to the necessary parameters.
+Generally speaking, the reason that these vaults have as much interoperability as they do is their ability to be cheaply replicatable through EIP 1167 Minimal proxies, and intelligent packing. In order to get these vaults to talk to a variety of different farms, instead of relying on a traditional Interface method, we make use of a bespoke "Tactics" set up. 
 
-After this, it's as simple as simple as navigating to the necessary file either createVault/createMaxi, ensuring the web3 endpoint is pointing at the right network, commenting out unneccesary constants and uncommenting the constants corresponding to the chain being used.
+Tactics essentially refer to byteststrings that are packed with farm-related variables that tell the vault how to interact with a given farm. You can find examples of formatted "encoded Selectors" within ./src/inputData.tacticsSetup. It includes the functions 4byte selector, accompanied by a hash nibble that corresponds with a given input, address(this), 32Bytes0, specified amount, so on so forth.
 
-Finally, at the bottom of the file, you'll want to change the arguments to the farm you're looking to vault. For the above, it'd look something like this;
->>createVault(PancakeSwap.WBNB_USDT)/createMaxi(PancakeSwap.WBNB_USDT, targetVid) where targetVid = whatever vault you want to maximise to!
+Obviously, this is pretty complicated to do, as it requires figuring out the 4bytes, the respective arguments, and then calling Strategy.generateTactics to get the byte string. That bytestring along with some other variables are fed into the generateConfig function which returns a bytes string that is used in createVault or createMaximizer to actually create the vault proxy. 
 
-Then just run `npm run createVault` or `npm run createMaxi` in the console, and away you go! 
+Did I bore you yet? Yes? Excellent, that means my motives weren't for nothing.
 
-If you need to add additional functionality, you can create a new farm.type and add a conditional with it's relevant tactics. Please only do so if you know 100% what you're doing. Hoping to find a way to automate this in V2
+#### How to Use 
 
-#### How to Create A Boost Pool
-This is also a bit of a work in progress with some UX features coming quite soon to make things a little easier.
-It's important to note that rewards contracts such as BoostPools fall victim to inconsistent block times, so it's always a good idea to deploy these relatively close to their go live dates, as the timing variables are all approximations with some pretty steep assumptions taken. 
+The following command line interface is a consistent work in progress for me, and serves as a piece of tooling to help with developer operations for the Crystl V3 Vaults Infrastructure.
 
-Without any further ado, here's how it works;
+Currently, the most well fleshed out tool is the DepositTxnParse tool that will take a transaction that corresponds with depositing funds into a MasterChef, MiniChef, StakingRewards or equivalent contract, and with minimal user input, creates a vaultConfig and deploys that vault to the chain of your choice.
 
-The CreateBoostPool function takes the following inputs as parameters. We'll go through these line by line so it'd evident what they correspond with.
+I will be adding in tooling to support more manual input vault creation for edge cases. 
 
-`createBoostPool(
-  network: string,
-  reward: string,
-  vid: number,
-  duration: number, //in days 
-  hoursToStart: number,
-  totalRewards: number,
-  decimals: number
-)`
+Another handy dandy tool that I have no plumbed in yet, but will be doing shortly is the TacticsChad. 
 
-- network - string for the network being deployed to, for example, "bsc"
-- reward - string with the address of the rewarded token
-- vid - number representing vid to boost
-- duration - number representing how long will the pool run for, roughly, in days
-- hoursToStart - number representing the approximate number of hours before the boost becomes active
-- totalRewards - number representing the total amount of rewards to be distributed over the period (no conversion to wei needed) 
-- decimals - number representing the decimal value of the reward token, this is used in conversions as above, v important! 
+Chad is cool. He can take our plain, idiot-speak and turn it into encoded selectors to be used in the Tactics section of set up, eventually I will allow the user to either select from a list of pre-determined tactics or generate their own using Chad, this will allow any old user with at least a little bit of Smart Contract development knowledge to spin up a vault for some less ... boilerplate farms. 
 
-This is pretty self explanatory, there are a few neat optimizations you can use to make life easier for you. For example, instead of tracking down the reward address every time, you may want to save it under inputData.ts under network.Tokens, for easier reference later! 
-
-Once you have everything set up, just run `npm run boost` in the console, and away you go! 
-
-Hope this helps, I will be adding to this project over time. Please be nice to this repo, it's still in Alpha, and be sure and let me know of any suggestions. Love: D <3
-
-
+All things in time of course.
+ 
 

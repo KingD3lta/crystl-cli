@@ -21,6 +21,11 @@ export const CreateConfigManualMenu = async (CSD) => {
       type: "input",
       name: "earned",
       message: "Please insert the earned token address",
+      filter: (val) => {
+        if (val == undefined) {
+          val = "";
+        }
+      },
     },
     {
       type: "confirm",
@@ -40,13 +45,16 @@ export const CreateConfigManualMenu = async (CSD) => {
       if (answers.pid == "") {
         answers.pid = "999";
       }
+      // if (answers.earned == undefined){
+      //   answers.earned = ""      }
       let FarmConfigInfo = {
-          farm: answers.farm,
-          pid: answers.pid,
-          want: answers.want,
-          earned: [answers.earned, answers.earnedB]
-      }
-      return FarmConfigInfo
+        farm: answers.farm,
+        pid: answers.pid,
+        want: answers.want,
+        earned: [answers.earned, answers.earnedB],
+      };
+      return FarmConfigInfo;
     });
+  console.log(responses);
   return responses;
 };

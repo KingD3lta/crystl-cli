@@ -81,6 +81,21 @@ export const PickARouter = async (msg = "", network) => {
   return SelectedRouter;
 };
 
+export const PickAStrat = async (msg = "", network) => {
+  const options = [
+    {
+      type: "list",
+      name: "PickAStrat",
+      choices: Object.keys(inputData[network].V3Vaults.Strategies),
+      message: msg,
+    },
+  ];
+  const SelectedStrat = await inquirer.prompt(options).then((answers) => {
+    return answers.PickAStrat;
+  });
+  return SelectedStrat;
+};
+
 export const PickATacticSetup = async () => {
   const options = [
     {
@@ -94,3 +109,17 @@ export const PickATacticSetup = async () => {
   });
   return TacticSetupSelected;
 };
+
+export const PriceInput = async (tokenName) => {
+  const options = [
+    {
+      type: "input",
+      name: "inputPrice",
+      message: `Please insert the current market price of ${tokenName}`
+    }
+  ]
+  return await inquirer.prompt(options).then((answers)=>{
+    return parseFloat(answers.inputPrice)
+  })
+
+}

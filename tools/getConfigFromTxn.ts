@@ -47,10 +47,10 @@ export const GetConfFromTxnMenu = async (network, TacticsType) => {
     WARN_MSG(
       "PLEASE ENSURE [WANT] TOKEN PRINTED BELOW MATCHES INTENDED USER INPUT (? _ ?  )"
     );
-    let farm = receipt.logs[4].address;
-    let pid = ethers.BigNumber.from(receipt.logs[4].topics[2]);
+    let farm = txn.to;
+    let pid = 28 //receipt.logs[2].topics[2];
     let [wantConfirmed, wantAddress] = await GetAndVerifyTokenFromTxn(
-      receipt.logs[3].address,
+      receipt.logs[1].address,
       provider
     );
     if (!wantConfirmed) {
@@ -85,7 +85,7 @@ export const GetConfFromTxnMenu = async (network, TacticsType) => {
     if (wantConfirmed) {
       const Addresses = {
         farm: farm,
-        pid: pid.toHexString(),
+        pid: pid,
         want: wantAddress,
         earned: [earnedAddress, earnedBAddress],
       };
@@ -143,13 +143,7 @@ export const GetConfFromTxnMenu = async (network, TacticsType) => {
   }
   
   if (TacticsType == "MasterChef" || "SaharaStaking") {
-    console.log("TXN:", txn);
-    console.log("Receipt:", receipt);
-    console.log(
-      "topics for deposit event",
-      parseInt(receipt.logs[2].topics[2])
-    );
-    const pid = receipt.logs[2].topics[2];
+    const pid = receipt.logs[receipt.logs.length-2].topics[2];
 
     WARN_MSG(
       "PLEASE ENSURE [WANT] TOKEN PRINTED BELOW MATCHES INTENDED USER INPUT (? _ ?  )"

@@ -42,7 +42,7 @@ export const TacticsChad = (calls: EncodedSelectors, vstReturnPos) => {
     deposit: encodeNPack(calls.deposit[0],calls.deposit[1]),
     withdraw: encodeNPack(calls.withdraw[0],calls.withdraw[1]),
     harvest: encodeNPack(calls.harvest[0],calls.harvest[1]),
-    sos: encodeNPack(calls.sos[0],calls.sos[1]),
+    SOS: encodeNPack(calls.sos[0],calls.sos[1]),
   }
   console.log(EncodedSelectors)
   return EncodedSelectors

@@ -4,16 +4,38 @@ import { INFO_MSG } from "../src/getDeploymentData";
 const ethers = require("ethers");
 var inquirer = require("inquirer");
 
+export const autoCalcDust = async (
+  price: number,
+  decimals: any,
+  isWant: boolean
+) => {
+  // for calculating dust with prices already determined
+  if (isWant) {
+    let tenCentsWorth =
+      (Math.pow(10, decimals) / price) * Math.pow(10, decimals - 1);
+      console.log("TEN CENTS WORTH:", tenCentsWorth)
+      console.log("DUST:",Math.floor(Math.log2(tenCentsWorth)))
+    return Math.floor(Math.log2(tenCentsWorth));
+  } else {
+    console.log(decimals.toNumber())
+    let aDollarWorth = (Math.pow(10, decimals) / price) * Math.pow(10, decimals);
+    console.log("A DOLLAR WORTH:",aDollarWorth)
+    console.log("DUST:",Math.floor(Math.log2(aDollarWorth)))
+    return Math.floor(Math.log2(aDollarWorth));
+  }
+};
+
 export const calcDust = async (
   wantAddr: any,
   earnedAddrArray: any[],
   Token: any,
   dev
 ) => {
+  //for manual Dust Calculations that rely on user input for token prices.
   let UniPair = new ethers.Contract(wantAddr, ABI.UniSwapV2Pair, dev);
 
   console.log(earnedAddrArray);
-  let EarnedDustArray: number[] = new Array();
+  let EarnedDustArray = new Array();
   let WantDust: number;
   const TokenPrices = [
     {
@@ -72,17 +94,18 @@ export const calcDust = async (
     Token = await Token.attach(wantAddr);
     let wantDecimals = await Token.decimals();
     let tenCentsWorth =
-      (Math.pow(10, wantDecimals) / (answers.wantSinglePrice * Math.pow(10, wantDecimals) )) *
+      (Math.pow(10, wantDecimals) /
+        (answers.wantSinglePrice * Math.pow(10, wantDecimals))) *
       Math.pow(10, wantDecimals - 1);
     WantDust = Math.floor(Math.log2(tenCentsWorth));
   }
-  INFO_MSG("Dust Log for staked token is:")
-  console.log(WantDust)
-  for (let i = 0; i < earnedAddrArray.length; i++) {
-    if (earnedAddrArray[i] == "" ) {
-      console.log("no earned token")
-      EarnedDustArray.push(0);
-    } else {
+  INFO_MSG("Dust Log for staked token is:");
+  console.log(WantDust);
+  if (earnedAddrArray.length < 1) {
+    console.log("no earned token");
+    return { WantDust, EarnedDustArray };
+  } else {
+    for (let i = 0; i < earnedAddrArray.length; i++) {
       Token = await Token.attach(earnedAddrArray[i]);
       let earnedDecimals = await Token.decimals();
       let aDollarWorth = Math.pow(10, earnedDecimals) / answers.earnedPrice;
@@ -92,7 +115,7 @@ export const calcDust = async (
       EarnedDustArray.push(Math.floor(Math.log2(aDollarWorth)));
     }
   }
-  INFO_MSG("Dust Log for earned token is:")
-  console.log(EarnedDustArray)
+  INFO_MSG("Dust Log for earned token is:");
+  console.log(EarnedDustArray);
   return { WantDust, EarnedDustArray };
 };
